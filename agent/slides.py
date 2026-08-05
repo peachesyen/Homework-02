@@ -13,13 +13,22 @@ from .models import Slide, SlideHTML
 
 logger = logging.getLogger("reel_agent.slides")
 
+# DogMood AI brand palette, taken from the real Figma mockup
+# (figma.com/design/MyI8NfKD99ZghDQf93v8Kz): warm coral-to-magenta hero
+# gradient, off-white app surface, orange primary accent, pink/magenta
+# secondary accent, white rounded cards.
 THEME = {
-    "bg_from": "#0b1020",
-    "bg_to": "#1b2540",
-    "accent": "#7dd3fc",
-    "accent2": "#f472b6",
-    "text": "#f8fafc",
-    "muted": "#94a3b8",
+    "bg_light": "#f7f7fb",
+    "hero_from": "#ff7a59",
+    "hero_to": "#ff4d8d",
+    "accent": "#ff8a3d",     # orange — primary CTA / active state
+    "accent2": "#ff4d8d",    # pink/magenta — social / alert
+    "text_dark": "#20232b",
+    "text_light": "#ffffff",
+    "muted": "#6b7280",
+    "success": "#22c55e",
+    "purple": "#8b5cf6",
+    "card": "#ffffff",
 }
 
 BASE_CSS = f"""
@@ -27,15 +36,23 @@ BASE_CSS = f"""
 html, body {{ width: {config.FRAME_WIDTH}px; height: {config.FRAME_HEIGHT}px; overflow: hidden; }}
 body {{
   font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 800px at 20% -10%, {THEME['bg_to']}, {THEME['bg_from']} 60%);
-  color: {THEME['text']};
+  background: {THEME['bg_light']};
+  color: {THEME['text_dark']};
   display: flex; align-items: center; justify-content: center;
 }}
-.card {{ width: 92%; height: 84%; display: flex; flex-direction: column; justify-content: center; gap: 18px; }}
-.eyebrow {{ color: {THEME['accent']}; font-size: 22px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }}
-h1 {{ font-size: 58px; line-height: 1.1; font-weight: 800; }}
-p.lede {{ font-size: 26px; color: {THEME['muted']}; max-width: 900px; line-height: 1.4; }}
-.badge {{ display:inline-block; background: rgba(125,211,252,0.12); color:{THEME['accent']}; border:1px solid rgba(125,211,252,0.4); border-radius:999px; padding:6px 18px; font-size:18px; font-weight:600; width:fit-content; }}
+body.hero {{
+  background: linear-gradient(160deg, {THEME['hero_from']}, {THEME['hero_to']} 75%);
+  color: {THEME['text_light']};
+}}
+.card {{ width: 92%; height: 84%; display: flex; flex-direction: column; justify-content: center; gap: 16px; }}
+.eyebrow {{ color: {THEME['accent']}; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; }}
+body.hero .eyebrow {{ color: rgba(255,255,255,0.9); }}
+h1 {{ font-size: 54px; line-height: 1.12; font-weight: 800; }}
+p.lede {{ font-size: 24px; color: {THEME['muted']}; max-width: 900px; line-height: 1.42; }}
+body.hero p.lede {{ color: rgba(255,255,255,0.94); }}
+.badge {{ display:inline-block; background: rgba(255,138,61,0.12); color:{THEME['accent']}; border:1px solid rgba(255,138,61,0.4); border-radius:999px; padding:6px 18px; font-size:17px; font-weight:700; width:fit-content; }}
+body.hero .badge {{ background: rgba(255,255,255,0.2); color:#fff; border-color: rgba(255,255,255,0.55); }}
+.dm-card {{ background:{THEME['card']}; border-radius:20px; box-shadow: 0 10px 30px rgba(32,35,43,0.08); }}
 """
 
 
@@ -57,10 +74,15 @@ Hard rules:
   infographic out of HTML/CSS and inline <svg> shapes (rect/circle/path/
   line/text) — at least 4 distinct connected visual elements. This is not
   optional and a text block with a small icon does not satisfy it.
-- Match this palette/theme (dark background, light text, cyan accent
-  {THEME['accent']}, pink accent {THEME['accent2']}):
-  body background should be a dark gradient, text light, one accent color
-  used for emphasis.
+- Match the DogMood AI brand (from the app's real Figma mockup): off-white
+  app background {THEME['bg_light']} with dark text {THEME['text_dark']} on
+  most slides; the title/hero slide uses a coral-to-magenta gradient
+  ({THEME['hero_from']} -> {THEME['hero_to']}) with white text instead
+  (add class="hero" to <body> for that one slide only). Orange
+  {THEME['accent']} is the primary accent (CTAs, active states); pink/
+  magenta {THEME['accent2']} is secondary (social/alerts). Content lives on
+  white rounded cards (20px radius, soft shadow) — mirror the mockup's
+  friendly, rounded, mobile-app aesthetic, not a generic dark dev-deck look.
 - Keep on-screen text SHORT — this is a video slide, not a document page.
   A headline + 1-2 supporting lines is plenty.
 - The slide must visually express the given `description` exactly (same
@@ -132,14 +154,15 @@ def _svg_pipeline(stages: list[str]) -> str:
     )
     for i, label in enumerate(stages):
         x = start_x + i * (box_w + gap)
-        fill = THEME["accent"] if i % 2 == 0 else THEME["accent2"]
+        stroke = THEME["accent"] if i % 2 == 0 else THEME["accent2"]
         parts.append(
             f'<rect x="{x}" y="{y}" width="{box_w}" height="{box_h}" rx="16" '
-            f'fill="rgba(255,255,255,0.06)" stroke="{fill}" stroke-width="2.5"/>'
+            f'fill="{THEME["card"]}" stroke="{stroke}" stroke-width="3" '
+            f'style="filter:drop-shadow(0 6px 14px rgba(32,35,43,0.12))"/>'
         )
         parts.append(
             f'<foreignObject x="{x+10}" y="{y+10}" width="{box_w-20}" height="{box_h-20}">'
-            f'<div xmlns="http://www.w3.org/1999/xhtml" style="color:#f8fafc;font-size:18px;'
+            f'<div xmlns="http://www.w3.org/1999/xhtml" style="color:{THEME["text_dark"]};font-size:18px;'
             f'font-weight:700;text-align:center;display:flex;align-items:center;'
             f'justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">'
             f'{label}</div></foreignObject>'
@@ -156,6 +179,7 @@ def _svg_pipeline(stages: list[str]) -> str:
 
 def _mock_html_for_slide(slide: Slide) -> SlideHTML:
     if slide.is_primary_visual or slide.visual_type == "architecture_diagram_svg":
+        body_class = ""
         stages = _extract_stage_labels(slide.description, slide.title)
         svg = _svg_pipeline(stages)
         body = f"""
@@ -167,39 +191,79 @@ def _mock_html_for_slide(slide: Slide) -> SlideHTML:
         """
         visual_summary = f"Inline SVG pipeline diagram: {' -> '.join(stages)}"
     elif slide.visual_type == "title_card":
+        body_class = "hero"
         body = f"""
         <div class="card" style="align-items:center; text-align:center;">
-          <svg width="120" height="120" viewBox="0 0 120 120" style="margin:0 auto 10px auto; display:block;">
-            <circle cx="60" cy="60" r="52" fill="none" stroke="{THEME['accent']}" stroke-width="4" opacity="0.6"/>
-            <circle cx="60" cy="60" r="30" fill="{THEME['accent2']}" opacity="0.85"/>
+          <div class="badge">AI EXPRESSION DETECTOR</div>
+          <svg width="160" height="160" viewBox="0 0 160 160" style="margin:10px auto; display:block;">
+            <circle cx="80" cy="80" r="76" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.7)" stroke-width="4"/>
+            <ellipse cx="55" cy="55" rx="16" ry="20" fill="#fff" opacity="0.9" transform="rotate(-20 55 55)"/>
+            <ellipse cx="105" cy="55" rx="16" ry="20" fill="#fff" opacity="0.9" transform="rotate(20 105 55)"/>
+            <ellipse cx="80" cy="92" rx="46" ry="40" fill="#fff"/>
+            <circle cx="65" cy="82" r="6" fill="{THEME['text_dark']}"/>
+            <circle cx="95" cy="82" r="6" fill="{THEME['text_dark']}"/>
+            <ellipse cx="80" cy="100" rx="10" ry="7" fill="{THEME['accent']}"/>
+            <path d="M80 105 Q80 116 68 112" stroke="{THEME['text_dark']}" stroke-width="3" fill="none" stroke-linecap="round"/>
           </svg>
           <h1>{slide.title}</h1>
           <p class="lede">{slide.description.split(':', 1)[-1].strip()[:160]}</p>
         </div>
         """
-        visual_summary = "Centered title card with a decorative SVG emblem"
+        visual_summary = "Hero title card, coral-to-magenta gradient, with a simple SVG dog-face emblem in a circular frame"
     elif slide.visual_type == "persona_or_icon_card":
+        body_class = ""
         items = re.findall(r"[A-Z][a-zA-Z &]{3,30}(?=:|,|;|$)", slide.description)[:4] or [
             "Users", "Creators", "Professionals"
         ]
+        icon_colors = [THEME["accent"], THEME["accent2"], THEME["purple"]]
         cards = "".join(
-            f"""<div style="flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
-                 border-radius:16px; padding:22px; text-align:center;">
-                 <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="16" r="10"
-                 fill="{THEME['accent']}"/><path d="M6 42c0-10 8-16 17-16s17 6 17 16" fill="{THEME['accent2']}"/></svg>
-                 <div style="margin-top:10px; font-size:20px; font-weight:700;">{c.strip()}</div>
+            f"""<div class="dm-card" style="flex:1; padding:24px; text-align:center;">
+                 <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="15" r="9"
+                 fill="{icon_colors[i % len(icon_colors)]}"/><path d="M6 40c0-9 7-15 16-15s16 6 16 15"
+                 fill="{icon_colors[i % len(icon_colors)]}" opacity="0.55"/></svg>
+                 <div style="margin-top:10px; font-size:19px; font-weight:700; color:{THEME['text_dark']};">{c.strip()}</div>
                </div>"""
-            for c in items
+            for i, c in enumerate(items)
         )
         body = f"""
         <div class="card">
-          <div class="eyebrow">Who It's For</div>
-          <h1 style="font-size:44px">{slide.title}</h1>
+          <div class="eyebrow">{slide.title}</div>
+          <h1 style="font-size:42px">{slide.title}</h1>
           <div style="display:flex; gap:20px; margin-top:14px;">{cards}</div>
         </div>
         """
-        visual_summary = f"Row of {len(items)} audience icon-cards"
+        visual_summary = f"Row of {len(items)} white audience icon-cards"
+    elif slide.visual_type == "stat_or_chart_svg":
+        body_class = ""
+        rows = re.findall(r"([A-Za-z][A-Za-z ]{2,15})\s+(\d{1,3})%", slide.description)
+        if not rows:
+            rows = [("Hungry", 48), ("Bored", 25), ("Upset", 15), ("Sad", 12)]
+        bar_w, row_h = 640, 46
+        bars = []
+        colors = [THEME["accent"], THEME["accent2"], THEME["purple"], THEME["muted"]]
+        for i, (label, pct) in enumerate(rows[:4]):
+            pct = int(pct)
+            y = i * row_h
+            fill_w = int(bar_w * pct / 100)
+            bars.append(
+                f'<text x="0" y="{y+20}" font-size="18" font-weight="700" fill="{THEME["text_dark"]}" '
+                f'font-family="sans-serif">{label.strip()}</text>'
+                f'<rect x="0" y="{y+28}" width="{bar_w}" height="14" rx="7" fill="#eceef2"/>'
+                f'<rect x="0" y="{y+28}" width="{fill_w}" height="14" rx="7" fill="{colors[i % len(colors)]}"/>'
+                f'<text x="{bar_w+16}" y="{y+40}" font-size="18" font-weight="800" '
+                f'fill="{colors[i % len(colors)]}" font-family="sans-serif">{pct}%</text>'
+            )
+        svg = f'<svg width="760" height="{len(rows[:4])*row_h}" viewBox="0 0 760 {len(rows[:4])*row_h}">{"".join(bars)}</svg>'
+        body = f"""
+        <div class="card" style="align-items:center; text-align:center;">
+          <div class="eyebrow">{slide.title}</div>
+          <h1 style="font-size:44px">{slide.title}</h1>
+          <div class="dm-card" style="padding:32px; margin-top:8px;">{svg}</div>
+        </div>
+        """
+        visual_summary = f"White card with an SVG horizontal bar chart: {', '.join(f'{l.strip()} {p}%' for l, p in rows[:4])}"
     else:
+        body_class = ""
         body = f"""
         <div class="card">
           <div class="eyebrow">{slide.visual_type.replace('_', ' ').title()}</div>
@@ -210,7 +274,7 @@ def _mock_html_for_slide(slide: Slide) -> SlideHTML:
         """
         visual_summary = "Headline + supporting text card with an accent badge"
 
-    html = f"<html><head><style>{BASE_CSS}</style></head><body>{body}</body></html>"
+    html = f'<html><head><style>{BASE_CSS}</style></head><body class="{body_class}">{body}</body></html>'
     return SlideHTML(slide_index=slide.index, html=html, visual_summary=visual_summary)
 
 
