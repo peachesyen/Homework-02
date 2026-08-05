@@ -1,0 +1,46 @@
+{
+  "project_title": "PetEmotion AI",
+  "tagline": "PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.",
+  "slides": [
+    {
+      "index": 1,
+      "title": "PetEmotion AI",
+      "description": "Title card: large centered project name 'PetEmotion AI' with a one-line tagline underneath: \"PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.\". Subtle gradient background.",
+      "narration": "PetEmotion AI. PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through.",
+      "visual_type": "title_card",
+      "is_primary_visual": false
+    },
+    {
+      "index": 2,
+      "title": "The Problem",
+      "description": "Left-aligned headline 'The Problem', with supporting text: Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals. A simple broken-signal icon (CSS) beside the text.",
+      "narration": "Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals.",
+      "visual_type": "text_only",
+      "is_primary_visual": false
+    },
+    {
+      "index": 3,
+      "title": "How It Works",
+      "description": "Inline SVG pipeline diagram with four connected stages: Multi-Frame Video Ingestion → Gemini API Pipeline → Reactive Three.js Engine → DogSocial Feed & Analytics. Each stage is a rounded box in the project's brand colors, linked by arrows showing data flowing left to right.",
+      "narration": "Here's how it works: Multi-Frame Video Ingestion then Gemini API Pipeline then Reactive Three.js Engine then DogSocial Feed.",
+      "visual_type": "architecture_diagram_svg",
+      "is_primary_visual": true
+    },
+    {
+      "index": 4,
+      "title": "Who It's For",
+      "description": "Icon-card row, one card per audience segment: Pet Owners; Social Content Creators & Influencers; Veterinary Professionals",
+      "narration": "Built for Pet Owners, Social Content Creators & Influencers, Veterinary Professionals",
+      "visual_type": "persona_or_icon_card",
+      "is_primary_visual": false
+    },
+    {
+      "index": 5,
+      "title": "Built Responsibly, What's Next",
+      "description": "Closing card: 'System Performance The multimodal approach using 20 temporal frames provides higher context accuracy than single-frame classification by eliminating false positives caused by…' plus a short call-to-action line pointing to the GitHub repo.",
+      "narration": "System Performance The multimodal approach using 20 temporal frames provides higher context. Learn more on GitHub.",
+      "visual_type": "text_only",
+      "is_primary_visual": false
+    }
+  ]
+}

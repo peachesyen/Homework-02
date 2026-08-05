@@ -1,0 +1,84 @@
+{
+  "critiques": [
+    {
+      "slide_index": 1,
+      "original_description": "Title card: large centered project name 'PetEmotion AI' with a one-line tagline underneath: \"PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.\". Subtle gradient background.",
+      "original_narration": "PetEmotion AI. PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through.",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Title card: large centered project name 'PetEmotion AI' with a one-line tagline underneath: \"PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.\". Subtle gradient background. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "PetEmotion AI. PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    },
+    {
+      "slide_index": 2,
+      "original_description": "Left-aligned headline 'The Problem', with supporting text: Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals. A simple broken-signal icon (CSS) beside the text.",
+      "original_narration": "Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals.",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Left-aligned headline 'The Problem', with supporting text: Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals. A simple broken-signal icon (CSS) beside the text. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    },
+    {
+      "slide_index": 3,
+      "original_description": "Inline SVG pipeline diagram with four connected stages: Multi-Frame Video Ingestion → Gemini API Pipeline → Reactive Three.js Engine → DogSocial Feed & Analytics. Each stage is a rounded box in the project's brand colors, linked by arrows showing data flowing left to right.",
+      "original_narration": "Here's how it works: Multi-Frame Video Ingestion then Gemini API Pipeline then Reactive Three.js Engine then DogSocial Feed.",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Inline SVG pipeline diagram with four connected stages: Multi-Frame Video Ingestion → Gemini API Pipeline → Reactive Three.js Engine → DogSocial Feed & Analytics. Each stage is a rounded box in the project's brand colors, linked by arrows showing data flowing left to right. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Here's how it works: Multi-Frame Video Ingestion then Gemini API Pipeline then Reactive Three.js Engine then DogSocial Feed.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    },
+    {
+      "slide_index": 4,
+      "original_description": "Icon-card row, one card per audience segment: Pet Owners; Social Content Creators & Influencers; Veterinary Professionals",
+      "original_narration": "Built for Pet Owners, Social Content Creators & Influencers, Veterinary Professionals",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Icon-card row, one card per audience segment: Pet Owners; Social Content Creators & Influencers; Veterinary Professionals Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Built for Pet Owners, Social Content Creators & Influencers, Veterinary Professionals. Powered by generative AI.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    },
+    {
+      "slide_index": 5,
+      "original_description": "Closing card: 'System Performance The multimodal approach using 20 temporal frames provides higher context accuracy than single-frame classification by eliminating false positives caused by…' plus a short call-to-action line pointing to the GitHub repo.",
+      "original_narration": "System Performance The multimodal approach using 20 temporal frames provides higher context. Learn more on GitHub.",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Closing card: 'System Performance The multimodal approach using 20 temporal frames provides higher context accuracy than single-frame classification by eliminating false positives caused by…' plus a short call-to-action line pointing to the GitHub repo. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "System Performance The multimodal approach using 20 temporal frames provides higher context. Learn more on GitHub.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    }
+  ]
+}

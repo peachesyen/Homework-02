@@ -1,0 +1,15 @@
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# build artifacts (rendered frames, raw audio, generated video)
+build/
+*.mp4
+
+# OS cruft
+.DS_Store

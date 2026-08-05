@@ -1,0 +1,16 @@
+# Core agent framework
+pydantic-ai-slim[openai]>=2.0
+pydantic>=2.0
+
+# LLM / TTS providers
+openai>=1.50
+
+# Optional: Gemini TTS (only needed if REEL_TTS_PROVIDER=gemini)
+google-genai>=0.3
+
+# HTML slide rendering -> PNG
+playwright>=1.45
+pillow>=10.0
+
+# env loading
+python-dotenv>=1.0
