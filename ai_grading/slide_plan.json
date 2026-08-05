@@ -21,7 +21,7 @@
     {
       "index": 3,
       "title": "How It Works",
-      "description": "Inline SVG infographic, four connected white rounded stage-cards (matching the app's real card style: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' — echoes the capture screen's dashed orange tracking-circle motif, (2) 'Gemini 1.5 Flash — Multimodal Analysis', (3) 'Structured Mood JSON', (4) '3 Outputs: Avatar, Dashboard, DogSocial'. Small 'HOW IT WORKS' eyebrow label above in tracked orange uppercase.",
+      "description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes.",
       "narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
       "visual_type": "architecture_diagram_svg",
       "is_primary_visual": true
@@ -37,7 +37,7 @@
     {
       "index": 5,
       "title": "Beyond the Score",
-      "description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' — reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' — share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' — a distress alert auto-suggests nearby vets. 'Beyond the Score' as the headline above the row.",
+      "description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score.",
       "narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
       "visual_type": "persona_or_icon_card",
       "is_primary_visual": false

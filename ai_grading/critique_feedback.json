@@ -2,8 +2,8 @@
   "critiques": [
     {
       "slide_index": 1,
-      "original_description": "Title card: large centered project name 'PetEmotion AI' with a one-line tagline underneath: \"PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.\". Subtle gradient background.",
-      "original_narration": "PetEmotion AI. PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through.",
+      "original_description": "Hero/splash card matching the app's onboarding screen: full-bleed coral-to-magenta gradient background (#ff7a59 -> #ff4d8d). Centered translucent-white pill badge 'AI EXPRESSION DETECTOR'. Below it, bold white headline 'DogMood AI' (54px). A 160px circular frame (white ring on translucent fill) containing a simple friendly dog face built from SVG shapes (two tilted ear ellipses, a round muzzle, two dot eyes, an orange nose, a small curved mouth) — no photo. Below the frame, one line of white/90%-opacity tagline text.",
+      "original_narration": "Meet DogMood AI — real-time dog emotion detection, right from your phone's camera.",
       "issues": [
         "Narration states the topic but not a memorable, concrete detail.",
         "The problem is described in general terms — no sense of scale (how many people, how often)."
@@ -12,14 +12,14 @@
         "Add one concrete number, name, or example so it's memorable, not generic.",
         "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
       ],
-      "revised_description": "Title card: large centered project name 'PetEmotion AI' with a one-line tagline underneath: \"PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through multi-frame video analysis using Google Gemini 1.5 Flash.\". Subtle gradient background. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "PetEmotion AI. PetEmotion AI is an end-to-end web application that decodes pet emotional states in real time through.",
+      "revised_description": "Hero/splash card matching the app's onboarding screen: full-bleed coral-to-magenta gradient background (#ff7a59 -> #ff4d8d). Centered translucent-white pill badge 'AI EXPRESSION DETECTOR'. Below it, bold white headline 'DogMood AI' (54px). A 160px circular frame (white ring on translucent fill) containing a simple friendly dog face built from SVG shapes (two tilted ear ellipses, a round muzzle, two dot eyes, an orange nose, a small curved mouth) — no photo. Below the frame, one line of white/90%-opacity tagline text. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Meet DogMood AI — real-time dog emotion detection, right from your phone's camera. Powered by generative AI.",
       "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
     },
     {
       "slide_index": 2,
-      "original_description": "Left-aligned headline 'The Problem', with supporting text: Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals. A simple broken-signal icon (CSS) beside the text.",
-      "original_narration": "Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals.",
+      "original_description": "Light off-white card. Left-aligned bold headline 'Pet Tech Tracks Steps. Not Feelings.' Two small stat chips side by side beneath it: a gray chip '8,532 steps today', and an orange-bordered chip 'Mood: unknown?'. One supporting line below: owners miss early signs of stress, boredom, or illness because nothing is actually watching for them. Orange 'Generative AI powered' badge pinned bottom-left.",
+      "original_narration": "Step counters track movement, not mood — early signs of stress or illness go unnoticed.",
       "issues": [
         "Narration states the topic but not a memorable, concrete detail.",
         "The problem is described in general terms — no sense of scale (how many people, how often)."
@@ -28,14 +28,14 @@
         "Add one concrete number, name, or example so it's memorable, not generic.",
         "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
       ],
-      "revised_description": "Left-aligned headline 'The Problem', with supporting text: Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals. A simple broken-signal icon (CSS) beside the text. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Problem Statement Pet owners often miss subtle non-verbal signals indicating stress, boredom, or early-stage illness in domestic animals.",
+      "revised_description": "Light off-white card. Left-aligned bold headline 'Pet Tech Tracks Steps. Not Feelings.' Two small stat chips side by side beneath it: a gray chip '8,532 steps today', and an orange-bordered chip 'Mood: unknown?'. One supporting line below: owners miss early signs of stress, boredom, or illness because nothing is actually watching for them. Orange 'Generative AI powered' badge pinned bottom-left. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Step counters track movement, not mood — early signs of stress or illness go unnoticed.",
       "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
     },
     {
       "slide_index": 3,
-      "original_description": "Inline SVG pipeline diagram with four connected stages: Multi-Frame Video Ingestion → Gemini API Pipeline → Reactive Three.js Engine → DogSocial Feed & Analytics. Each stage is a rounded box in the project's brand colors, linked by arrows showing data flowing left to right.",
-      "original_narration": "Here's how it works: Multi-Frame Video Ingestion then Gemini API Pipeline then Reactive Three.js Engine then DogSocial Feed.",
+      "original_description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes.",
+      "original_narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
       "issues": [
         "Narration states the topic but not a memorable, concrete detail.",
         "The problem is described in general terms — no sense of scale (how many people, how often)."
@@ -44,14 +44,14 @@
         "Add one concrete number, name, or example so it's memorable, not generic.",
         "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
       ],
-      "revised_description": "Inline SVG pipeline diagram with four connected stages: Multi-Frame Video Ingestion → Gemini API Pipeline → Reactive Three.js Engine → DogSocial Feed & Analytics. Each stage is a rounded box in the project's brand colors, linked by arrows showing data flowing left to right. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Here's how it works: Multi-Frame Video Ingestion then Gemini API Pipeline then Reactive Three.js Engine then DogSocial Feed.",
+      "revised_description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
       "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
     },
     {
       "slide_index": 4,
-      "original_description": "Icon-card row, one card per audience segment: Pet Owners; Social Content Creators & Influencers; Veterinary Professionals",
-      "original_narration": "Built for Pet Owners, Social Content Creators & Influencers, Veterinary Professionals",
+      "original_description": "Recreation of the app's real results-dashboard card: white card, top green 'ANALYSIS COMPLETE' pill, large text 'Hungry! 92% AI CONF' next to a circular orange progress ring at 92%. Below it, an 'Emotion Mix' horizontal bar chart, four rows with orange/magenta/ purple/gray bars: Hungry 48%, Bored 25%, Upset 15%, Sad 12%, each with its percentage right-aligned.",
+      "original_narration": "Every scan returns a confidence score and a full emotion breakdown, not just one guess.",
       "issues": [
         "Narration states the topic but not a memorable, concrete detail.",
         "The problem is described in general terms — no sense of scale (how many people, how often)."
@@ -60,14 +60,14 @@
         "Add one concrete number, name, or example so it's memorable, not generic.",
         "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
       ],
-      "revised_description": "Icon-card row, one card per audience segment: Pet Owners; Social Content Creators & Influencers; Veterinary Professionals Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Built for Pet Owners, Social Content Creators & Influencers, Veterinary Professionals. Powered by generative AI.",
+      "revised_description": "Recreation of the app's real results-dashboard card: white card, top green 'ANALYSIS COMPLETE' pill, large text 'Hungry! 92% AI CONF' next to a circular orange progress ring at 92%. Below it, an 'Emotion Mix' horizontal bar chart, four rows with orange/magenta/ purple/gray bars: Hungry 48%, Bored 25%, Upset 15%, Sad 12%, each with its percentage right-aligned. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Every scan returns a confidence score and a full emotion breakdown, not just one guess.",
       "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
     },
     {
       "slide_index": 5,
-      "original_description": "Closing card: 'System Performance The multimodal approach using 20 temporal frames provides higher context accuracy than single-frame classification by eliminating false positives caused by…' plus a short call-to-action line pointing to the GitHub repo.",
-      "original_narration": "System Performance The multimodal approach using 20 temporal frames provides higher context. Learn more on GitHub.",
+      "original_description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score.",
+      "original_narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
       "issues": [
         "Narration states the topic but not a memorable, concrete detail.",
         "The problem is described in general terms — no sense of scale (how many people, how often)."
@@ -76,8 +76,24 @@
         "Add one concrete number, name, or example so it's memorable, not generic.",
         "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
       ],
-      "revised_description": "Closing card: 'System Performance The multimodal approach using 20 temporal frames provides higher context accuracy than single-frame classification by eliminating false positives caused by…' plus a short call-to-action line pointing to the GitHub repo. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "System Performance The multimodal approach using 20 temporal frames provides higher context. Learn more on GitHub.",
+      "revised_description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score. Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
+      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+    },
+    {
+      "slide_index": 6,
+      "original_description": "Closing card, off-white background. Headline 'Built Responsibly, For Everyone'. Three small audience tags in a row: Pet Owners, Creators, Veterinarians. Below, a thin purple-bordered disclaimer box: 'A behavioral approximation, not a vet diagnosis.' Bottom line: 'See the code on GitHub.'",
+      "original_narration": "Built for owners, creators, and vets — a behavioral approximation, never a diagnosis. See the repo.",
+      "issues": [
+        "Narration states the topic but not a memorable, concrete detail.",
+        "The problem is described in general terms — no sense of scale (how many people, how often)."
+      ],
+      "suggestions": [
+        "Add one concrete number, name, or example so it's memorable, not generic.",
+        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
+      ],
+      "revised_description": "Closing card, off-white background. Headline 'Built Responsibly, For Everyone'. Three small audience tags in a row: Pet Owners, Creators, Veterinarians. Below, a thin purple-bordered disclaimer box: 'A behavioral approximation, not a vet diagnosis.' Bottom line: 'See the code on GitHub.' Add a small stat callout near the headline to quantify the problem.",
+      "revised_narration": "Built for owners, creators, and vets — a behavioral approximation, never a diagnosis. See the repo.",
       "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
     }
   ]

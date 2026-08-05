@@ -3,19 +3,27 @@
 html, body { width: 1280px; height: 720px; overflow: hidden; }
 body {
   font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 800px at 20% -10%, #1b2540, #0b1020 60%);
-  color: #f8fafc;
+  background: #f7f7fb;
+  color: #20232b;
   display: flex; align-items: center; justify-content: center;
 }
-.card { width: 92%; height: 84%; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-.eyebrow { color: #7dd3fc; font-size: 22px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
-h1 { font-size: 58px; line-height: 1.1; font-weight: 800; }
-p.lede { font-size: 26px; color: #94a3b8; max-width: 900px; line-height: 1.4; }
-.badge { display:inline-block; background: rgba(125,211,252,0.12); color:#7dd3fc; border:1px solid rgba(125,211,252,0.4); border-radius:999px; padding:6px 18px; font-size:18px; font-weight:600; width:fit-content; }
-</style></head><body>
+body.hero {
+  background: linear-gradient(160deg, #ff7a59, #ff4d8d 75%);
+  color: #ffffff;
+}
+.card { width: 92%; height: 84%; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.eyebrow { color: #ff8a3d; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; }
+body.hero .eyebrow { color: rgba(255,255,255,0.9); }
+h1 { font-size: 54px; line-height: 1.12; font-weight: 800; }
+p.lede { font-size: 24px; color: #6b7280; max-width: 900px; line-height: 1.42; }
+body.hero p.lede { color: rgba(255,255,255,0.94); }
+.badge { display:inline-block; background: rgba(255,138,61,0.12); color:#ff8a3d; border:1px solid rgba(255,138,61,0.4); border-radius:999px; padding:6px 18px; font-size:17px; font-weight:700; width:fit-content; }
+body.hero .badge { background: rgba(255,255,255,0.2); color:#fff; border-color: rgba(255,255,255,0.55); }
+.dm-card { background:#ffffff; border-radius:20px; box-shadow: 0 10px 30px rgba(32,35,43,0.08); }
+</style></head><body class="">
         <div class="card" style="align-items:center; text-align:center;">
           <div class="eyebrow">How It Works</div>
           <h1 style="font-size:46px">How It Works</h1>
-          <div style="margin-top: 10px;"><svg width="1100" height="200" viewBox="0 0 1100 200"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#7dd3fc"/></marker></defs><rect x="110" y="40" width="190" height="110" rx="16" fill="rgba(255,255,255,0.06)" stroke="#7dd3fc" stroke-width="2.5"/><foreignObject x="120" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#f8fafc;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">Multi-Frame Video Ingestion</div></foreignObject><line x1="300" y1="95" x2="334" y2="95" stroke="#7dd3fc" stroke-width="3" marker-end="url(#arrow)"/><rect x="340" y="40" width="190" height="110" rx="16" fill="rgba(255,255,255,0.06)" stroke="#f472b6" stroke-width="2.5"/><foreignObject x="350" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#f8fafc;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">Gemini API Pipeline</div></foreignObject><line x1="530" y1="95" x2="564" y2="95" stroke="#7dd3fc" stroke-width="3" marker-end="url(#arrow)"/><rect x="570" y="40" width="190" height="110" rx="16" fill="rgba(255,255,255,0.06)" stroke="#7dd3fc" stroke-width="2.5"/><foreignObject x="580" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#f8fafc;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">Reactive Three</div></foreignObject><line x1="760" y1="95" x2="794" y2="95" stroke="#7dd3fc" stroke-width="3" marker-end="url(#arrow)"/><rect x="800" y="40" width="190" height="110" rx="16" fill="rgba(255,255,255,0.06)" stroke="#f472b6" stroke-width="2.5"/><foreignObject x="810" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#f8fafc;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">DogSocial Feed & Analytics</div></foreignObject></svg></div>
+          <div style="margin-top: 10px;"><svg width="1100" height="200" viewBox="0 0 1100 200"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#ff8a3d"/></marker></defs><rect x="110" y="40" width="190" height="110" rx="16" fill="#ffffff" stroke="#ff8a3d" stroke-width="3" style="filter:drop-shadow(0 6px 14px rgba(32,35,43,0.12))"/><foreignObject x="120" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#20232b;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">20-Frame Capture</div></foreignObject><line x1="300" y1="95" x2="334" y2="95" stroke="#ff8a3d" stroke-width="3" marker-end="url(#arrow)"/><rect x="340" y="40" width="190" height="110" rx="16" fill="#ffffff" stroke="#ff4d8d" stroke-width="3" style="filter:drop-shadow(0 6px 14px rgba(32,35,43,0.12))"/><foreignObject x="350" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#20232b;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">Gemini 1.5 Flash</div></foreignObject><line x1="530" y1="95" x2="564" y2="95" stroke="#ff8a3d" stroke-width="3" marker-end="url(#arrow)"/><rect x="570" y="40" width="190" height="110" rx="16" fill="#ffffff" stroke="#ff8a3d" stroke-width="3" style="filter:drop-shadow(0 6px 14px rgba(32,35,43,0.12))"/><foreignObject x="580" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#20232b;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">Structured Mood JSON</div></foreignObject><line x1="760" y1="95" x2="794" y2="95" stroke="#ff8a3d" stroke-width="3" marker-end="url(#arrow)"/><rect x="800" y="40" width="190" height="110" rx="16" fill="#ffffff" stroke="#ff4d8d" stroke-width="3" style="filter:drop-shadow(0 6px 14px rgba(32,35,43,0.12))"/><foreignObject x="810" y="50" width="170" height="90"><div xmlns="http://www.w3.org/1999/xhtml" style="color:#20232b;font-size:18px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;line-height:1.25">3 Outputs</div></foreignObject></svg></div>
         </div>
         </body></html>

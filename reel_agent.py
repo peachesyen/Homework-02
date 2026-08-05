@@ -28,7 +28,7 @@ from agent import config
 from agent.critique import critique_and_revise
 from agent.flow_diagram import render_agent_flow_png
 from agent.llm import generate_slide_plan
-from agent.models import CritiqueFeedback, Slide
+from agent.models import CritiqueFeedback, Slide, SlidePlan
 from agent.proposal import load_proposal_text, parse_sections
 from agent.slides import SlideRenderer, generate_slide_html
 from agent.tts import synthesize
@@ -91,7 +91,7 @@ async def _finalize_slide(
     )
 
 
-async def run(proposal_path: Path, out_video: Path) -> None:
+async def run(proposal_path: Path, out_video: Path, fixed_plan_path: Path | None = None) -> None:
     t0 = time.time()
     providers: dict[str, str] = {}
 
@@ -99,12 +99,20 @@ async def run(proposal_path: Path, out_video: Path) -> None:
     raw = load_proposal_text(proposal_path)
     sections = parse_sections(raw)
 
-    # Slide plan and the (data-independent) flow diagram can be produced concurrently.
-    log.info("Generating slide plan and agent-flow diagram in parallel...")
-    (plan, plan_provider), flow_png = await asyncio.gather(
-        generate_slide_plan(sections),
-        render_agent_flow_png(config.AI_GRADING_DIR / "agent_flow.png"),
-    )
+    # The agent-flow diagram doesn't depend on the plan, so it always renders concurrently.
+    flow_task = asyncio.create_task(render_agent_flow_png(config.AI_GRADING_DIR / "agent_flow.png"))
+
+    if fixed_plan_path is not None:
+        # Use a plan authored ahead of time (e.g. grounded in a Figma mockup
+        # the LLM never sees) instead of generating one from proposal text alone.
+        log.info("Loading fixed slide plan from %s (skipping generate_slide_plan)", fixed_plan_path)
+        plan = SlidePlan.model_validate_json(fixed_plan_path.read_text(encoding="utf-8"))
+        plan_provider = "hand-authored (Figma mockup)"
+    else:
+        log.info("Generating slide plan...")
+        plan, plan_provider = await generate_slide_plan(sections)
+    await flow_task
+
     providers["slide_plan"] = plan_provider
     log.info("Slide plan: %d slides, provider=%s", len(plan.slides), plan_provider)
     _write_json(plan, config.AI_GRADING_DIR / "slide_plan.json")
@@ -169,13 +177,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--proposal", type=Path, default=config.PROPOSAL_PATH)
     parser.add_argument("--out", type=Path, default=config.VIDEO_PATH)
+    parser.add_argument(
+        "--slide-plan", type=Path, default=None,
+        help="Skip generate_slide_plan() and use this pre-authored SlidePlan JSON instead.",
+    )
     args = parser.parse_args()
 
     if not args.proposal.exists():
         log.error("Proposal file not found: %s", args.proposal)
         sys.exit(1)
+    if args.slide_plan is not None and not args.slide_plan.exists():
+        log.error("--slide-plan file not found: %s", args.slide_plan)
+        sys.exit(1)
 
-    asyncio.run(run(args.proposal, args.out))
+    asyncio.run(run(args.proposal, args.out, args.slide_plan))
 
 
 if __name__ == "__main__":

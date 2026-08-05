@@ -124,6 +124,13 @@ async def generate_slide_html(slide: Slide) -> tuple[SlideHTML, str]:
 # ---------------------------------------------------------------------------
 
 def _extract_stage_labels(description: str, fallback_title: str) -> list[str]:
+    # Prefer '...'-quoted stage names (how a human-authored description
+    # marks the literal on-screen labels) over guessing from prose.
+    # Negative lookbehind so a contraction apostrophe (app's, screen's) is
+    # never mistaken for the start of a quoted label.
+    quoted = re.findall(r"(?<![A-Za-z])'([^']{2,50})'", description)
+    if 3 <= len(quoted) <= 6:
+        return [q.split(" — ")[0].split(":")[0].strip() for q in quoted[:5]]
     if "→" in description:
         stages = [s.strip() for s in description.split("→") if s.strip()]
         stages = [re.sub(r"^[^:]*:\s*", "", s) for s in stages]
@@ -206,15 +213,17 @@ def _mock_html_for_slide(slide: Slide) -> SlideHTML:
             <path d="M80 105 Q80 116 68 112" stroke="{THEME['text_dark']}" stroke-width="3" fill="none" stroke-linecap="round"/>
           </svg>
           <h1>{slide.title}</h1>
-          <p class="lede">{slide.description.split(':', 1)[-1].strip()[:160]}</p>
+          <p class="lede">{slide.narration.strip()[:160]}</p>
         </div>
         """
         visual_summary = "Hero title card, coral-to-magenta gradient, with a simple SVG dog-face emblem in a circular frame"
     elif slide.visual_type == "persona_or_icon_card":
         body_class = ""
-        items = re.findall(r"[A-Z][a-zA-Z &]{3,30}(?=:|,|;|$)", slide.description)[:4] or [
-            "Users", "Creators", "Professionals"
-        ]
+        # Prefer '...'-quoted labels (human-authored on-screen text) over
+        # guessing capitalized phrases out of prose.
+        quoted = re.findall(r"(?<![A-Za-z])'([^']{2,30})'", slide.description)
+        capped = re.findall(r"[A-Z][a-zA-Z &]{3,30}(?=:|,|;|$)", slide.description)
+        items = (quoted or capped)[:4] or ["Users", "Creators", "Professionals"]
         icon_colors = [THEME["accent"], THEME["accent2"], THEME["purple"]]
         cards = "".join(
             f"""<div class="dm-card" style="flex:1; padding:24px; text-align:center;">
@@ -235,7 +244,10 @@ def _mock_html_for_slide(slide: Slide) -> SlideHTML:
         visual_summary = f"Row of {len(items)} white audience icon-cards"
     elif slide.visual_type == "stat_or_chart_svg":
         body_class = ""
-        rows = re.findall(r"([A-Za-z][A-Za-z ]{2,15})\s+(\d{1,3})%", slide.description)
+        # Require a capitalized one-word label directly before the percent
+        # (e.g. "Hungry 48%") so incidental phrases like "...ring at 92%"
+        # in surrounding prose don't get mistaken for chart rows.
+        rows = re.findall(r"\b([A-Z][a-z]+)\s+(\d{1,3})%", slide.description)
         if not rows:
             rows = [("Hungry", 48), ("Bored", 25), ("Upset", 15), ("Sad", 12)]
         bar_w, row_h = 640, 46
@@ -268,7 +280,7 @@ def _mock_html_for_slide(slide: Slide) -> SlideHTML:
         <div class="card">
           <div class="eyebrow">{slide.visual_type.replace('_', ' ').title()}</div>
           <h1>{slide.title}</h1>
-          <p class="lede">{slide.description[:220]}</p>
+          <p class="lede">{slide.narration.strip()[:220]}</p>
           <div class="badge">Generative AI powered</div>
         </div>
         """
