@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 
 from pydantic_ai import Agent
-from pydantic_ai.models.openai import OpenAIChatModel
+from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from . import config, mock_provider
@@ -21,14 +21,16 @@ from .text_utils import cap_words
 
 logger = logging.getLogger("reel_agent.llm")
 
-_model_cache: OpenAIChatModel | None = None
+# gpt-5.6-luna is served over OpenAI's Responses API (not Chat Completions),
+# hence OpenAIResponsesModel rather than OpenAIChatModel.
+_model_cache: OpenAIResponsesModel | None = None
 
 
-def get_llm_model() -> OpenAIChatModel:
+def get_llm_model() -> OpenAIResponsesModel:
     global _model_cache
     if _model_cache is None:
         provider = OpenAIProvider(api_key=config.OPENAI_API_KEY, base_url=config.OPENAI_BASE_URL)
-        _model_cache = OpenAIChatModel(model_name=config.LLM_MODEL, provider=provider)
+        _model_cache = OpenAIResponsesModel(model_name=config.LLM_MODEL, provider=provider)
     return _model_cache
 
 
