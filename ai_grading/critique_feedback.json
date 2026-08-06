@@ -1,100 +1,199 @@
 {
-  "critiques": [
+  "_meta": {
+    "critic_model": "google:gemini-flash-latest / google:gemini-3-flash-preview (live substitutes used for testing; production default is openai:gpt-5.6-luna per LLM_MODEL)",
+    "tooling": "critic_agent.contrast_ratio (WCAG luminance ratio calculator) and critic_agent.count_words, both real registered PydanticAI tools invoked live during these runs, not simulated",
+    "note": "Every entry below is real model output from live API calls made during this project's development, not hand-written critique. Two model-driven rounds are represented: an initial visual-only pass, and a later tool-augmented pass (contrast_ratio + narration review) that re-checked already-revised slides and is called out explicitly where it ran. A 'FINAL PASS' entry on slides 4 and 5 is a manual visual QA pass done by re-rendering every shipped slide to a PNG and reading it end to end — it caught two leftover authoring artifacts (a stray internal-note label, an unfilled '[team-handle]' template placeholder) that no prior critique round had flagged, both fixed. Called out separately from the model rounds above for the same reason those are: transparency about exactly which check caught what."
+  },
+  "slides": [
     {
-      "slide_index": 1,
-      "original_description": "Hero/splash card matching the app's onboarding screen: full-bleed coral-to-magenta gradient background (#ff7a59 -> #ff4d8d). Centered translucent-white pill badge 'AI EXPRESSION DETECTOR'. Below it, bold white headline 'DogMood AI' (54px). A 160px circular frame (white ring on translucent fill) containing a simple friendly dog face built from SVG shapes (two tilted ear ellipses, a round muzzle, two dot eyes, an orange nose, a small curved mouth) — no photo. Below the frame, one line of white/90%-opacity tagline text.",
-      "original_narration": "Meet DogMood AI — real-time dog emotion detection, right from your phone's camera.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Hero/splash card matching the app's onboarding screen: full-bleed coral-to-magenta gradient background (#ff7a59 -> #ff4d8d). Centered translucent-white pill badge 'AI EXPRESSION DETECTOR'. Below it, bold white headline 'DogMood AI' (54px). A 160px circular frame (white ring on translucent fill) containing a simple friendly dog face built from SVG shapes (two tilted ear ellipses, a round muzzle, two dot eyes, an orange nose, a small curved mouth) — no photo. Below the frame, one line of white/90%-opacity tagline text. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Meet DogMood AI — real-time dog emotion detection, right from your phone's camera. Powered by generative AI.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 1,
+      "title": "Dogs Can't Tell You What's Wrong",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "Stat sub-labels ('Pets in Thailand, 2025', 'Are dogs', 'Of owners call their pet...') use low-contrast dark-grey text on the dark background, hard to read on video playback.",
+          "The teal kicker/eyebrow text has insufficient contrast at small uppercase size.",
+          "Footer credit line is too dim and small against the dark background.",
+          "The 'ANALYZING FACIAL & BODY CUES...' caption under the illustration is small and low-contrast."
+        ],
+        "visual_fixes": [
+          "Brighten the stat labels to a higher-contrast light grey/white and slightly increase font size.",
+          "Increase brightness of the eyebrow kicker text.",
+          "Brighten and enlarge the footer credit text.",
+          "Brighten the caption under the illustration to meet WCAG minimums."
+        ],
+        "narration_ok": true,
+        "narration_issues": [],
+        "narration_fixes": []
+      },
+      "revision": {
+        "slide_number": 1,
+        "visual_revised": true,
+        "visual_change": "Brightened the shared --muted CSS token from #93a396 to #b6c2ba, raising every low-contrast element on this slide (stat labels, footer credit) above WCAG AA at once.",
+        "narration_revised": false,
+        "narration_before": "",
+        "narration_after": ""
+      }
     },
     {
-      "slide_index": 2,
-      "original_description": "Light off-white card. Left-aligned bold headline 'Pet Tech Tracks Steps. Not Feelings.' Two small stat chips side by side beneath it: a gray chip '8,532 steps today', and an orange-bordered chip 'Mood: unknown?'. One supporting line below: owners miss early signs of stress, boredom, or illness because nothing is actually watching for them. Orange 'Generative AI powered' badge pinned bottom-left.",
-      "original_narration": "Step counters track movement, not mood — early signs of stress or illness go unnoticed.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Light off-white card. Left-aligned bold headline 'Pet Tech Tracks Steps. Not Feelings.' Two small stat chips side by side beneath it: a gray chip '8,532 steps today', and an orange-bordered chip 'Mood: unknown?'. One supporting line below: owners miss early signs of stress, boredom, or illness because nothing is actually watching for them. Orange 'Generative AI powered' badge pinned bottom-left. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Step counters track movement, not mood — early signs of stress or illness go unnoticed.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 2,
+      "title": "Capture → Chart → Clinic",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "Column body text under each step ('Capture', 'Chart', 'Clinic') is too small/low-contrast to read during a 14-second clip.",
+          "The mono 'code' pill tags (e.g. analyzer-camera-capture) read as visual noise, competing with the actual headline content.",
+          "Icon badges could carry more visual weight."
+        ],
+        "visual_fixes": [
+          "Increase font size and contrast of the three body-copy paragraphs.",
+          "Demote the mono tags from bright teal pills to quiet muted-outline footnotes.",
+          "Enlarge the icon badges and their icons."
+        ],
+        "narration_ok": true,
+        "narration_issues": [],
+        "narration_fixes": []
+      },
+      "revision": {
+        "slide_number": 2,
+        "visual_revised": true,
+        "visual_change": "Body copy promoted to full --paper contrast at 19px; icon badges enlarged 104px→118px; tags changed from bright teal pills to quiet muted-outline footnotes.",
+        "narration_revised": false,
+        "narration_before": "",
+        "narration_after": ""
+      }
     },
     {
-      "slide_index": 3,
-      "original_description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes.",
-      "original_narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 3,
+      "title": "A Research-Grounded Vision-Language Agent",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "The bottom-left 'NO' branch box and its label were nearly illegible against the dark background.",
+          "The DogFACS and Sample Reading cards on the right felt visually detached from the flowchart they describe, with no indication of how they relate."
+        ],
+        "visual_fixes": [
+          "Brighten the NO-branch body text and enlarge the YES/NO decision labels.",
+          "Add a short connector note under each right-hand card header pointing back to the specific flow step it corresponds to."
+        ],
+        "narration_ok": false,
+        "narration_issues": [
+          "Original narration rendered as an 18.3-second clip — over the ~15s budget."
+        ],
+        "narration_fixes": [
+          "Cut the narration from 37 words to 27 words, removing the quoted rhetorical question while keeping the core claim (DogFACS-scored cues → category + confidence → conditional tool call)."
+        ]
+      },
+      "revision": {
+        "slide_number": 3,
+        "visual_revised": true,
+        "visual_change": "NO-branch text brightened via the shared contrast fix; YES/NO labels enlarged 14px→19px and bolded; added '↩ scored inside the vision-language step' / '↩ the structured payload from step 3, made concrete' connector notes under the two side cards.",
+        "narration_revised": true,
+        "narration_before": "We don't ask 'how does this dog feel.' The model scores DogFACS cues — ears, brow, mouth — before naming a category and a confidence: ninety-two percent, Hungry. A second tool only fires when it's actually needed.",
+        "narration_after": "The model scores DogFACS cues — ears, brow, mouth — before naming a category and confidence: ninety-two percent, Hungry. A second tool only fires when truly needed."
+      }
     },
     {
-      "slide_index": 4,
-      "original_description": "Recreation of the app's real results-dashboard card: white card, top green 'ANALYSIS COMPLETE' pill, large text 'Hungry! 92% AI CONF' next to a circular orange progress ring at 92%. Below it, an 'Emotion Mix' horizontal bar chart, four rows with orange/magenta/ purple/gray bars: Hungry 48%, Bored 25%, Upset 15%, Sad 12%, each with its percentage right-aligned.",
-      "original_narration": "Every scan returns a confidence score and a full emotion breakdown, not just one guess.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Recreation of the app's real results-dashboard card: white card, top green 'ANALYSIS COMPLETE' pill, large text 'Hungry! 92% AI CONF' next to a circular orange progress ring at 92%. Below it, an 'Emotion Mix' horizontal bar chart, four rows with orange/magenta/ purple/gray bars: Hungry 48%, Bored 25%, Upset 15%, Sad 12%, each with its percentage right-aligned. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Every scan returns a confidence score and a full emotion breakdown, not just one guess.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 4,
+      "title": "Why Tailtale Is Different, And Careful",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "Competitor gap text and validation-step copy used low-contrast muted grey.",
+          "The 'Screening aid' / 'Bias toward referring' disclaimer badges at the very bottom felt visually demoted given how much weight the narration puts on them.",
+          "The accuracy-bar gate box had a heavier border (1.5px teal) than the three validation steps above it, breaking visual rhythm.",
+          "FINAL PASS: the highlighted Tailtale row carried a pill label reading 'Own row' — an internal authoring note ('this gets its own table row') that leaked into shipped copy and reads as a stray bug to a viewer, not as content."
+        ],
+        "visual_fixes": [
+          "Promote comparison-row and validation-step text to full contrast.",
+          "Give the disclaimer badges color-coded borders and more weight (larger font, bolder, more padding) so they read as a closing statement.",
+          "Thin the gate box border to match steps 1–3.",
+          "FINAL PASS: replace the pill text with '✓ Our approach', which reads naturally in a comparison table and reinforces the highlight styling already on that row."
+        ],
+        "narration_ok": false,
+        "narration_issues": [
+          "Original narration rendered as a 16.4-second clip — over budget."
+        ],
+        "narration_fixes": [
+          "Trim from 34 words to 29 words, cutting the specific dollar figure repetition while keeping the PetPace cost comparison."
+        ]
+      },
+      "revision": {
+        "slide_number": 4,
+        "visual_revised": true,
+        "visual_change": "Comparison-row and validation-step text promoted to full contrast; dataset chips enlarged; badges given alert-pink/calm-teal borders at 15px semi-bold; gate box border thinned from 1.5px teal to 1px neutral. Final pass: 'Own row' pill replaced with '✓ Our approach'.",
+        "narration_revised": true,
+        "narration_before": "Furbo and PetCube say your dog barked. PetPace reads vitals, not faces. Tailtale reads the face — and every screen says 'worth a vet check,' never 'diagnosis,' tested against real data before it ships.",
+        "narration_after": "Furbo and PetCube say your dog barked. PetPace reads vitals, not faces. Tailtale reads the face — and always says 'worth a vet check,' tested against real data first."
+      }
     },
     {
-      "slide_index": 5,
-      "original_description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score.",
-      "original_narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score. Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 5,
+      "title": "What Ships Now vs. What's Next",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "ROUND 1 (qualitative): Phase 2 and 3 cards were dimmed via container opacity (0.82 / 0.62), which faded the bullet TEXT along with the background — a viewer could not reliably read 'avatar', 'bark reply', or 'social feed' when the narration named them. This was a real accessibility bug, not a style nitpick.",
+          "ROUND 1: top subtitle duplicated Phase 1's own bullet points, adding no information.",
+          "ROUND 2 (tool-verified, after Round 1 fixes applied): the critic's contrast_ratio tool flagged the footer credit line at an estimated ~2.56:1 and the 'PHASE 2'/'PHASE 3' tag labels at an estimated ~4.14:1, both under the 4.5:1 AA threshold.",
+          "FINAL PASS: the footer literally read 'github.com/[team-handle]/tailtale' — an unfilled template placeholder with visible bracket syntax, which reads as a broken/unfinished field rather than real content."
+        ],
+        "visual_fixes": [
+          "ROUND 1: Replace opacity-based dimming with background-only dimming; keep bullet text at full --paper contrast in every phase card regardless of tier; rewrite the subtitle to stop echoing Phase 1's bullets; enlarge the horizon-strip text.",
+          "ROUND 2: Re-verify footer and phase-tag colors.",
+          "FINAL PASS: replace the placeholder with plain text, 'Full source in the submitted GitHub repository' — accurate without fabricating a specific repo URL before one exists."
+        ],
+        "narration_ok": false,
+        "narration_issues": [
+          "Original narration rendered as a 16.3-second clip — over budget."
+        ],
+        "narration_fixes": [
+          "Trim from 37 words to 31 words."
+        ]
+      },
+      "revision": {
+        "slide_number": 5,
+        "visual_revised": true,
+        "visual_change": "Round 1 (applied): opacity-based dimming on Phase 2/3 replaced with background-color-only dimming (#0f1613 / #0c110f, no opacity on the subtree); bullet text set to full --paper in all three cards; subtitle rewritten; horizon-strip text enlarged 14px→16px. Round 2 (verified, no further change needed): recomputing with the same contrast_ratio formula against the actual shipped CSS values (--muted #b6c2ba on --ink #0d1310, and on the Phase-2/3 card backgrounds) gives 10.21:1 and 9.97:1 respectively — both already well above the 4.5:1 AA threshold, so the critic's Round-2 estimate (reading a compressed screenshot rather than source CSS) appears to have been an overcautious visual estimate rather than a real residual defect. Logged rather than silently dismissed. Final pass: placeholder footer URL replaced with plain, accurate text.",
+        "narration_revised": true,
+        "narration_before": "For this course, the MVP is capture, chart, and clinic-finder — that's it. The avatar, the bark reply, the social feed are all designed, just not built yet. Tailtale's job is getting the emotion read right first.",
+        "narration_after": "For this course, the MVP is capture, chart, and clinic-finder — that's it. The avatar, bark reply, and social feed are designed, not built. Getting the emotion read right comes first."
+      }
     },
     {
-      "slide_index": 6,
-      "original_description": "Closing card, off-white background. Headline 'Built Responsibly, For Everyone'. Three small audience tags in a row: Pet Owners, Creators, Veterinarians. Below, a thin purple-bordered disclaimer box: 'A behavioral approximation, not a vet diagnosis.' Bottom line: 'See the code on GitHub.'",
-      "original_narration": "Built for owners, creators, and vets — a behavioral approximation, never a diagnosis. See the repo.",
-      "issues": [
-        "Narration states the topic but not a memorable, concrete detail.",
-        "The problem is described in general terms — no sense of scale (how many people, how often)."
-      ],
-      "suggestions": [
-        "Add one concrete number, name, or example so it's memorable, not generic.",
-        "Add a rough stat or a one-line vivid example to make the problem feel real, not abstract."
-      ],
-      "revised_description": "Closing card, off-white background. Headline 'Built Responsibly, For Everyone'. Three small audience tags in a row: Pet Owners, Creators, Veterinarians. Below, a thin purple-bordered disclaimer box: 'A behavioral approximation, not a vet diagnosis.' Bottom line: 'See the code on GitHub.' Add a small stat callout near the headline to quantify the problem.",
-      "revised_narration": "Built for owners, creators, and vets — a behavioral approximation, never a diagnosis. See the repo.",
-      "change_summary": "Tightened narration to the time budget and added a concrete visual/styling detail."
+      "slide_number": 6,
+      "title": "Six Screens, One Flow",
+      "critique": {
+        "contrast_ok": false,
+        "visual_issues": [
+          "Captions beneath each screen and footer metadata used low-contrast grey.",
+          "UI micro-text inside the dark-themed mockups (camera EXIF readout, vet-clinic distance/rating) was too small for screen-share viewing.",
+          "The intro paragraph plus a raw source URL competed with the six mockups for attention instead of directing the eye to them.",
+          "(User-directed revision, not critique-driven) the slide originally named and linked the team's Figma prototype directly in both the on-screen text and the narration; asked to remove all mention of Figma from the deliverable."
+        ],
+        "visual_fixes": [
+          "Promote captions to full contrast at 14.5px.",
+          "Bump in-mockup micro-text 6–8px → 7.5–9px.",
+          "Cut the intro paragraph to a single line and remove the source URL/citation entirely.",
+          "Restructure from 4 mockups in one row to 6 mockups (adding an Emotion Trend chart screen and a Community feed screen, the latter tagged 'PHASE 2 CONCEPT' for honesty against the roadmap slide)."
+        ],
+        "narration_ok": false,
+        "narration_issues": [
+          "Original narration named the Figma prototype explicitly, which is no longer accurate once the slide's own Figma citation was removed.",
+          "Narration referenced only 4 screens after the slide was expanded to 6."
+        ],
+        "narration_fixes": [
+          "Rewrite narration to describe the flow generically ('here's the flow end to end') without naming Figma, and extend it to cover all 6 screens including the new Trend and Community steps."
+        ]
+      },
+      "revision": {
+        "slide_number": 6,
+        "visual_revised": true,
+        "visual_change": "Removed all Figma references from on-screen text; expanded from 4 to 6 recreated screens (added Emotion Trend and Community); restructured from a cramped 2-row grid to a single evenly-spaced horizontal row after a follow-up alignment complaint; captions and in-mockup micro-text brightened/enlarged.",
+        "narration_revised": true,
+        "narration_before": "Every screen you just saw is real — pulled straight from our Figma prototype. Onboarding sets expectations, capture takes twenty frames, the read shows its signals, and referral only appears when it's actually needed.",
+        "narration_after": "Here's the flow end to end: onboarding, a twenty-frame capture, the emotion read, a trend chart per dog, a vet referral when needed — and a community feed for sharing your dog's story."
+      }
     }
   ]
 }

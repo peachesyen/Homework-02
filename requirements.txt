@@ -1,16 +1,22 @@
-# Core agent framework
-pydantic-ai-slim[openai]>=2.0
-pydantic>=2.0
+# Tailtale reel_agent — dependencies
+# Tested against: pydantic-ai 2.25.0, openai 2.53.0, Python 3.11
 
-# LLM / TTS providers
-openai>=1.50
-
-# Optional: Gemini TTS (only needed if REEL_TTS_PROVIDER=gemini)
-google-genai>=0.3
-
-# HTML slide rendering -> PNG
-playwright>=1.45
-pillow>=10.0
-
-# env loading
+pydantic-ai>=2.25.0
+pydantic>=2.9
 python-dotenv>=1.0
+openai>=1.99.0
+
+# Browser automation for HTML slide -> PNG rendering
+playwright>=1.47
+
+# Bundles a static ffmpeg binary so video stitching works with zero system
+# setup. reel_agent.py prefers a system `ffmpeg` on PATH if one exists.
+imageio-ffmpeg>=0.5
+
+# After installing, Playwright needs its browser binary once:
+#   playwright install chromium
+
+# Dev-only: the offline test suite (test_reel_agent.py). Not needed to run
+# reel_agent.py itself — only to verify it without spending API quota.
+pytest>=8.0
+pytest-asyncio>=0.24

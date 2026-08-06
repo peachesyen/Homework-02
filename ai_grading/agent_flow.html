@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tailtale — Production Agent Flow</title>
+<style>
+  :root{
+    --ink:#0d1310; --panel:#121a16; --paper:#f4f7f2; --muted:#b6c2ba;
+    --line:#26362d; --warm:#ff7a45; --calm:#4fd1b0; --alert:#ff5c8a;
+    --font-display: ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --font-sans: ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code","DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#000;height:100%;}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .slide{
+    width:1920px;height:1080px;flex:none;position:relative;background:var(--ink);
+    color:var(--paper); font-family:var(--font-sans); padding:56px 64px 40px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:17px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--calm); display:flex; align-items:center; gap:14px; margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--calm);display:block;}
+  h1{
+    font-family:var(--font-display); font-weight:600; font-size:46px; line-height:1.08;
+    margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .dek{ font-size:17px; line-height:1.4; color:var(--muted); margin:0 0 30px; }
+
+  .flow{ display:flex; align-items:flex-start; margin-top:56px; }
+  .col{ display:flex; flex-direction:column; align-items:center; width:210px; flex:none; }
+  .arrow{ width:34px; flex:none; display:flex; align-items:center; justify-content:center; }
+  .arrow svg{ display:block; }
+
+  .stackwrap{ position:relative; width:100%; }
+  .stackwrap.n6::before, .stackwrap.n6::after{
+    content:""; position:absolute; left:0; right:0; border-radius:14px;
+    background:var(--panel); border:1px solid var(--line);
+  }
+  .stackwrap.n6::before{ top:-12px; height:100%; transform:scale(0.94); opacity:0.55; z-index:1; }
+  .stackwrap.n6::after{ top:-6px; height:100%; transform:scale(0.97); opacity:0.8; z-index:2; }
+
+  .card{
+    position:relative; z-index:3; width:100%; background:var(--panel); border:1.5px solid var(--line);
+    border-radius:14px; padding:16px 15px; display:flex; flex-direction:column; gap:8px;
+  }
+  .card.accent{ border-color:var(--calm); background:rgba(79,209,176,0.07); }
+  .card.warm{ border-color:var(--warm); background:rgba(255,122,69,0.07); }
+
+  .n-badge{
+    position:absolute; top:-11px; right:-11px; z-index:4; font-family:var(--font-mono); font-size:10px;
+    font-weight:700; color:#05100c; background:var(--calm); border-radius:999px; padding:3px 8px;
+  }
+  .stage-name{ font-family:var(--font-display); font-weight:700; font-size:16px; }
+  .tool{ font-family:var(--font-mono); font-size:10px; color:var(--calm); }
+  .io{ font-family:var(--font-mono); font-size:9.5px; line-height:1.45; color:var(--muted); }
+  .io b{ color:var(--paper); font-weight:600; }
+
+  .split{ display:flex; flex-direction:column; gap:10px; width:100%; }
+  .split .card{ padding:12px 13px; gap:5px; }
+  .split .stage-name{ font-size:13.5px; }
+  .split .io{ font-size:8.8px; }
+  .bracket-label{
+    text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--warm);
+    letter-spacing:.05em; margin-top:8px;
+  }
+
+  .legend{
+    margin-top:52px; padding-top:20px; border-top:1px solid var(--line);
+    display:flex; gap:26px; font-family:var(--font-mono); font-size:12.5px; color:var(--muted);
+  }
+  .legend b{ color:var(--paper); }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide">
+
+    <div class="eyebrow">Production Agent — Flow Diagram</div>
+    <h1>How This Video Was Made</h1>
+    <p class="dek">The actual pipeline that generated, critiqued, and stitched this deck — three stages fan out across all 6 slides in parallel; two run once, in order, because sequence matters there. All LLM calls use <b style="color:var(--paper);">openai:gpt-5.6-luna</b> via PydanticAI, with registered tools — not just structured output.</p>
+
+    <div class="flow">
+
+      <div class="col">
+        <div class="card">
+          <div class="stage-name">1 · Plan</div>
+          <div class="tool">agent: gpt-5.6-luna · tool: count_words</div>
+          <div class="io"><b>IN</b> project_proposal.md<br/><b>OUT</b> SlidePlan (4–6× title, description, narration)</div>
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="split">
+          <div class="card accent">
+            <div class="stage-name">2a · Render</div>
+            <div class="tool">tool: Playwright + Chromium</div>
+            <div class="io"><b>IN</b> slide HTML/CSS<br/><b>OUT</b> 1920×1080 PNG</div>
+          </div>
+          <div class="card accent">
+            <div class="stage-name">2b · Synth Audio</div>
+            <div class="tool">tool: OpenAI tts-1-hd (Gemini TTS optional)</div>
+            <div class="io"><b>IN</b> narration text<br/><b>OUT</b> WAV clip (≤16s)</div>
+          </div>
+        </div>
+        <div class="bracket-label">↕ parallel · ×6 slides × 2 tasks</div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="stackwrap n6">
+          <div class="n-badge">×6</div>
+          <div class="card accent">
+            <div class="stage-name">3 · Critique</div>
+            <div class="tool">agent: gpt-5.6-luna (vision) · tools: contrast_ratio, count_words</div>
+            <div class="io"><b>IN</b> PNG + narration text<br/><b>OUT</b> SlideCritique (visual + narration issues/fixes)</div>
+          </div>
+        </div>
+        <div class="bracket-label">parallel across slides</div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="card">
+          <div class="stage-name">4 · Enhance</div>
+          <div class="tool">visual: auto-patch · narration: gpt-5.6-luna reviser agent</div>
+          <div class="io"><b>IN</b> critique + HTML/CSS + narration<br/><b>OUT</b> patched CSS and/or rewritten narration, or no-op</div>
+        </div>
+        <div class="bracket-label">sequential · idempotent</div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="stackwrap n6">
+          <div class="n-badge">×6</div>
+          <div class="card warm">
+            <div class="stage-name">5 · Stitch</div>
+            <div class="tool">tool: ffmpeg (mux)</div>
+            <div class="io"><b>IN</b> PNG + WAV pair<br/><b>OUT</b> per-slide MP4 segment</div>
+          </div>
+        </div>
+        <div class="bracket-label">parallel across slides</div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="card warm">
+          <div class="stage-name">6 · Assemble</div>
+          <div class="tool">tool: ffmpeg concat</div>
+          <div class="io"><b>IN</b> 6 MP4 segments, in order<br/><b>OUT</b> full narrated video (~94s)</div>
+        </div>
+        <div class="bracket-label">sequential · order matters</div>
+      </div>
+
+      <div class="arrow"><svg width="34" height="20" viewBox="0 0 34 20"><line x1="2" y1="10" x2="26" y2="10" stroke="#26362d" stroke-width="2"/><path d="M20 3 L30 10 L20 17" fill="none" stroke="#ff7a45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+      <div class="col">
+        <div class="card">
+          <div class="stage-name">7 · Reel</div>
+          <div class="tool">tool: ffmpeg (atempo + setpts)</div>
+          <div class="io"><b>IN</b> full video<br/><b>OUT</b> 30–60s highlight reel</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <span><span class="dot" style="background:#4fd1b0;"></span><b>Teal border</b> — fans out per-slide, runs concurrently</span>
+      <span><span class="dot" style="background:#ff7a45;"></span><b>Orange border</b> — runs once, sequentially, because order/state matters</span>
+      <span><span class="dot" style="background:#26362d;"></span><b>Neutral</b> — single-shot control step</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

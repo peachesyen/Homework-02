@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tailtale — Slide 5: What Ships Now vs. What's Next</title>
+<style>
+  :root{
+    --ink:#0d1310; --panel:#121a16; --paper:#f4f7f2; --muted:#b6c2ba;
+    --line:#223028; --warm:#ff7a45; --calm:#4fd1b0; --alert:#ff5c8a;
+    --font-display: ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --font-sans: ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code","DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#000;height:100%;}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .slide{
+    width:1920px;height:1080px;flex:none;position:relative;background:var(--ink);
+    color:var(--paper); font-family:var(--font-sans); padding:80px 110px 60px;
+    display:flex; flex-direction:column;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:19px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--calm); display:flex; align-items:center; gap:14px; margin-bottom:20px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--calm);display:block;}
+  h1{
+    font-family:var(--font-display); font-weight:600; font-size:60px; line-height:1.08;
+    margin:0 0 16px; letter-spacing:-0.01em; text-wrap:balance;
+  }
+  .dek{ font-size:21px; line-height:1.5; color:var(--muted); max-width:100ch; margin:0 0 50px; }
+
+  .track{ position:relative; height:2px; background:var(--line); margin:0 8px 34px; }
+  .dot{ position:absolute; top:50%; width:14px; height:14px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--ink); }
+  .track .horizon-line{ position:absolute; top:0; height:2px; background:repeating-linear-gradient(90deg, var(--muted) 0 8px, transparent 8px 16px); }
+  .track .horizon-arrow{ position:absolute; top:-6px; }
+
+  .phases{ display:flex; gap:26px; flex:1; align-items:stretch; }
+  .phase{
+    flex:1; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; gap:16px;
+    background:var(--panel); border:1.5px solid var(--line);
+  }
+  .phase.now{ border-color:var(--warm); background:rgba(255,122,69,0.08); flex:1.15; }
+  .phase.later{ background:#0f1613; }
+  .phase.latest{ background:#0c110f; }
+  .phase-icon{ width:52px; height:52px; border-radius:50%; background:var(--ink); display:flex; align-items:center; justify-content:center; }
+  .phase-tag{ font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; }
+  .phase.now .phase-tag{ color:var(--warm); }
+  .phase h2{ font-family:var(--font-display); font-size:28px; margin:0; font-weight:600; }
+  .phase ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .phase li{ font-size:16px; line-height:1.4; color:var(--paper); padding-left:20px; position:relative; }
+  .phase.now li{ color:var(--paper); }
+  .phase li::before{ content:"—"; position:absolute; left:0; color:var(--muted); }
+  .phase.now li::before{ color:var(--warm); }
+
+  .horizon-strip{
+    margin-top:32px; padding:18px 26px; border:1px dashed var(--line); border-radius:12px;
+    display:flex; align-items:center; gap:14px; font-family:var(--font-mono); font-size:16px; color:var(--muted);
+  }
+  .horizon-strip b{ color:var(--calm); }
+  .horizon-strip .sep{ color:var(--line); }
+
+  .footline{
+    margin-top:30px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:var(--font-mono); font-size:15px; color:var(--muted);
+  }
+  .footline strong{ color:var(--paper); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide">
+
+    <div class="eyebrow">05 — Roadmap</div>
+    <h1>What Ships Now vs. What's Next</h1>
+    <p class="dek">Everything below is real product thinking — the phases past the MVP are deliberately not built yet.</p>
+
+    <div class="track">
+      <div class="dot" style="left:2%; background:#ff7a45;"></div>
+      <div class="dot" style="left:37%; background:#4fd1b0;"></div>
+      <div class="dot" style="left:69%; background:#4fd1b0; opacity:.6;"></div>
+      <div class="horizon-line" style="left:96%; width:4%;"></div>
+    </div>
+
+    <div class="phases">
+      <div class="phase now">
+        <div class="phase-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff7a45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 3.8 8.7 9 9 5.2-.3 9-4 9-9V7l-9-5z"/><path d="M8.5 12l2.5 2.5L16 9"/></svg></div>
+        <div class="phase-tag">PHASE 1 — SHIPPING NOW</div>
+        <h2>Course MVP</h2>
+        <ul>
+          <li>Upload / record a short clip</li>
+          <li>Emotion chart, conservative plain-language categories</li>
+          <li>Clinic-finder map, gated by concern threshold</li>
+          <li>No live-stream · no 3D avatars</li>
+        </ul>
+      </div>
+
+      <div class="phase later">
+        <div class="phase-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b6c2ba" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 13.2c2.4.3 4 2.2 4 5"/></svg></div>
+        <div class="phase-tag" style="color:#b6c2ba;">PHASE 2 — PLANNED</div>
+        <h2>Community</h2>
+        <ul>
+          <li>Stylized avatar generated from a photo</li>
+          <li>Community feed — post, like, comment</li>
+          <li>Lightweight moderation on shared content</li>
+        </ul>
+      </div>
+
+      <div class="phase latest">
+        <div class="phase-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b6c2ba" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.5 21.5 7v10l-5-3.5"/></svg></div>
+        <div class="phase-tag" style="color:#b6c2ba;">PHASE 3 — LATER</div>
+        <h2>Live &amp; Playful</h2>
+        <ul>
+          <li>True live-video emotion analysis</li>
+          <li>Generated "bark reply" audio</li>
+          <li>Ships once the core pipeline is field-validated</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="horizon-strip">
+      <b>12–24 MONTH HORIZON →</b>
+      <span>Swap in dog-fine-tuned models as benchmarks mature</span>
+      <span class="sep">·</span>
+      <span>Opt-in vet-clinic booking partnership</span>
+      <span class="sep">·</span>
+      <span>Validation study with a veterinary behaviorist</span>
+    </div>
+
+    <div class="footline">
+      <span>Full source in the submitted GitHub repository</span>
+      <span>Generative AI and Social Media · Sasin School of Management · Aug 2026</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

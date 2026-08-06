@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tailtale — Slide 1: Dogs Can't Tell You What's Wrong</title>
+<style>
+  :root{
+    --ink:#0d1310; --panel:#121a16; --paper:#f4f7f2; --muted:#b6c2ba;
+    --line:#223028; --warm:#ff7a45; --calm:#4fd1b0; --alert:#ff5c8a;
+    --font-display: ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --font-sans: ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code","DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#000;height:100%;}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .slide{
+    width:1920px;height:1080px;flex:none;position:relative;
+    background:
+      radial-gradient(1100px 700px at 78% 46%, #16241d 0%, var(--ink) 62%),
+      var(--ink);
+    color:var(--paper); font-family:var(--font-sans);
+    display:grid; grid-template-columns: 1.35fr 1fr;
+  }
+  .col-text{ padding:120px 40px 100px 120px; display:flex; flex-direction:column; justify-content:center; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:20px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--calm); display:flex; align-items:center; gap:14px; margin-bottom:36px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--calm);display:block;}
+  h1{
+    font-family:var(--font-display); font-weight:600; font-size:96px; line-height:1.04;
+    margin:0 0 36px; letter-spacing:-0.01em; text-wrap:balance; max-width:14ch;
+  }
+  h1 em{ font-style:italic; color:var(--warm); }
+  .dek{
+    font-size:26px; line-height:1.55; color:var(--muted); max-width:52ch; margin:0 0 68px;
+  }
+  .stats{ display:flex; gap:56px; }
+  .stat{ min-width:0; }
+  .stat .n{
+    font-family:var(--font-mono); font-size:52px; font-weight:700; color:var(--paper);
+    font-variant-numeric:tabular-nums; display:block; margin-bottom:8px;
+  }
+  .stat .n.accent{ color:var(--warm); }
+  .stat .l{ font-size:16px; color:var(--muted); line-height:1.4; max-width:20ch; }
+  .credit{
+    position:absolute; left:120px; bottom:56px; font-family:var(--font-mono);
+    font-size:14px; color:var(--muted); letter-spacing:.03em;
+  }
+  .col-art{ position:relative; display:flex; align-items:center; justify-content:center; }
+  .spin{ transform-origin:200px 200px; animation:spin 48s linear infinite; }
+  .spin2{ transform-origin:200px 200px; animation:spin 70s linear infinite reverse; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ .spin,.spin2{ animation:none; } }
+  .tick{ font-family:var(--font-mono); font-size:11px; fill:var(--muted); letter-spacing:.08em; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide">
+
+    <div class="col-text">
+      <div class="eyebrow">Tailtale — Project Proposal</div>
+      <h1>Dogs can&rsquo;t tell you <em>what&rsquo;s&nbsp;wrong.</em></h1>
+      <p class="dek">In Thailand, dogs are treated like family — but they can&rsquo;t self-report pain, hunger, or distress, and reliable vet access isn&rsquo;t everywhere. Tailtale gives owners a same-day, camera-based read on their dog&rsquo;s mood, and a clear next step when something looks off.</p>
+      <div class="stats">
+        <div class="stat"><span class="n accent">5M+</span><span class="l">Pets in Thailand, 2025</span></div>
+        <div class="stat"><span class="n">3.45M</span><span class="l">Are dogs</span></div>
+        <div class="stat"><span class="n">~50%</span><span class="l">Of owners call their pet &ldquo;like a child&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="col-art">
+      <svg width="640" height="640" viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#1c2e24"/>
+            <stop offset="100%" stop-color="#0d1310" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="195" fill="url(#glow)"/>
+
+        <!-- AI scan rings -->
+        <circle class="spin" cx="200" cy="200" r="178" fill="none" stroke="#ff7a45" stroke-width="1.5" stroke-dasharray="3 11" opacity="0.55"/>
+        <circle class="spin2" cx="200" cy="200" r="160" fill="none" stroke="#4fd1b0" stroke-width="1" stroke-dasharray="1 7" opacity="0.4"/>
+
+        <!-- viewfinder corners -->
+        <g stroke="#4fd1b0" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8">
+          <path d="M58 90 V64 H84"/>
+          <path d="M342 90 V64 H316"/>
+          <path d="M58 310 V336 H84"/>
+          <path d="M342 310 V336 H316"/>
+        </g>
+
+        <!-- dog head, geometric line-art -->
+        <g stroke="#f4f7f2" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M108 150 Q64 56 138 84 Q152 138 128 178 Z" fill="#0d1310"/>
+          <path d="M292 150 Q336 56 262 84 Q248 138 272 178 Z" fill="#0d1310"/>
+          <ellipse cx="200" cy="222" rx="112" ry="98" fill="#121a16"/>
+          <ellipse cx="200" cy="262" rx="54" ry="40" fill="#0d1310"/>
+          <path d="M198 288 Q198 300 180 308 M202 288 Q202 300 220 308"/>
+        </g>
+        <path d="M184 249 Q200 240 216 249 Q216 262 200 268 Q184 262 184 249 Z" fill="#f4f7f2"/>
+        <circle cx="164" cy="206" r="7.5" fill="#4fd1b0"/>
+        <circle cx="236" cy="206" r="7.5" fill="#4fd1b0"/>
+        <g stroke="#f4f7f2" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M148 186 Q164 178 180 188"/>
+          <path d="M220 188 Q236 178 252 186"/>
+        </g>
+
+        <!-- readout tick -->
+        <text x="200" y="378" text-anchor="middle" class="tick">ANALYZING FACIAL &amp; BODY CUES…</text>
+      </svg>
+    </div>
+
+    <div class="credit">Generative AI and Social Media · Sasin School of Management · Aug 2026</div>
+  </div>
+</div>
+</body>
+</html>

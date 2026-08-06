@@ -1,54 +1,48 @@
 {
-  "project_title": "PetEmotion AI (DogMood AI)",
-  "tagline": "Understand your dog's emotions with real-time AI analysis — barks, eyes, and ear posture translated instantly.",
+  "project_name": "Tailtale",
+  "video_title": "Tailtale \u2014 Project Proposal (Generative AI and Social Media, Sasin)",
   "slides": [
     {
-      "index": 1,
-      "title": "DogMood AI",
-      "description": "Hero/splash card matching the app's onboarding screen: full-bleed coral-to-magenta gradient background (#ff7a59 -> #ff4d8d). Centered translucent-white pill badge 'AI EXPRESSION DETECTOR'. Below it, bold white headline 'DogMood AI' (54px). A 160px circular frame (white ring on translucent fill) containing a simple friendly dog face built from SVG shapes (two tilted ear ellipses, a round muzzle, two dot eyes, an orange nose, a small curved mouth) — no photo. Below the frame, one line of white/90%-opacity tagline text.",
-      "narration": "Meet DogMood AI — real-time dog emotion detection, right from your phone's camera.",
-      "visual_type": "title_card",
-      "is_primary_visual": false
+      "slide_number": 1,
+      "title": "Dogs Can't Tell You What's Wrong",
+      "slide_description": "Full-bleed dark title card. Small 'Tailtale' wordmark, top-left. Center-right: a geometric line-art dog face illustration with animated AI scan rings and viewfinder corners. Left: three stacked stat lines \u2014 '5M+ pets in Thailand', '3.45M are dogs', '~50% call their pet \"like a child\"'. Course credit, bottom-left.",
+      "visual_source": "stat_graphic",
+      "narration": "Meet a dog who can't tell you if she's anxious or just hungry. In Thailand, over three million dogs are treated like family \u2014 but they can't self-report pain, and vet access isn't always close. That's where Tailtale starts."
     },
     {
-      "index": 2,
-      "title": "Pet Tech Tracks Steps. Not Feelings.",
-      "description": "Light off-white card. Left-aligned bold headline 'Pet Tech Tracks Steps. Not Feelings.' Two small stat chips side by side beneath it: a gray chip '8,532 steps today', and an orange-bordered chip 'Mood: unknown?'. One supporting line below: owners miss early signs of stress, boredom, or illness because nothing is actually watching for them. Orange 'Generative AI powered' badge pinned bottom-left.",
-      "narration": "Step counters track movement, not mood — early signs of stress or illness go unnoticed.",
-      "visual_type": "text_only",
-      "is_primary_visual": false
+      "slide_number": 2,
+      "title": "Capture \u2192 Chart \u2192 Clinic",
+      "slide_description": "3-step icon pipeline spanning the slide width: Capture (camera icon) \u2192 Chart (bar-chart icon) \u2192 Clinic (map-pin icon, conditional), each in a circular badge with a title, one-line description, and a tag naming the mockup screen it maps to. Dashed arrows with arrowheads connect the steps.",
+      "visual_source": "diagram",
+      "narration": "Tailtale is a browser app \u2014 no collar, no hardware. Point a webcam at your dog, or upload a clip. The app samples twenty key frames \u2014 that's the whole capture step, using a camera you already own."
     },
     {
-      "index": 3,
-      "title": "How It Works",
-      "description": "Inline SVG infographic, four connected white rounded stage-cards (matching the real card style used elsewhere in the app: 16px radius, soft shadow, colored 3px border alternating orange/magenta) laid out left to right with arrow connectors: (1) '20-Frame Capture' using the dashed orange tracking-circle motif from the capture screen, (2) 'Gemini 1.5 Flash', (3) 'Structured Mood JSON', (4) '3 Outputs'. Small eyebrow label HOW IT WORKS above in tracked orange uppercase, no quotes.",
-      "narration": "Twenty frames in four seconds feed Gemini 1.5 Flash, which reads micro-expressions and outputs a mood.",
-      "visual_type": "architecture_diagram_svg",
-      "is_primary_visual": true
+      "slide_number": 3,
+      "title": "A Research-Grounded Vision-Language Agent",
+      "slide_description": "Full agentic-flow infographic: 20 sampled frames \u2192 vision-language model (DogFACS-prompted, emphasized node) \u2192 structured emotion payload \u2192 decision diamond ('concern threshold crossed?') branching No (saved to history) / Yes (tool call: Places API \u2192 vet map). Right side: DogFACS action-unit checklist and a live SVG confidence-arc gauge reading 92% / Hungry.",
+      "visual_source": "diagram",
+      "narration": "The model scores DogFACS cues \u2014 ears, brow, mouth \u2014 before naming a category and confidence: ninety-two percent, Hungry. A second tool only fires when truly needed."
     },
     {
-      "index": 4,
-      "title": "See It In Action",
-      "description": "Recreation of the app's real results-dashboard card: white card, top green 'ANALYSIS COMPLETE' pill, large text 'Hungry! 92% AI CONF' next to a circular orange progress ring at 92%. Below it, an 'Emotion Mix' horizontal bar chart, four rows with orange/magenta/ purple/gray bars: Hungry 48%, Bored 25%, Upset 15%, Sad 12%, each with its percentage right-aligned.",
-      "narration": "Every scan returns a confidence score and a full emotion breakdown, not just one guess.",
-      "visual_type": "stat_or_chart_svg",
-      "is_primary_visual": false
+      "slide_number": 4,
+      "title": "Why Tailtale Is Different, And Careful",
+      "slide_description": "Left: 4-row competitive comparison (Furbo/PetCube, PetPace, PerkyPet/PetNexa, Tailtale highlighted). Right: validation pipeline \u2014 DogFACS prompting \u2192 few-shot calibration (2 dataset chips) \u2192 held-out test set \u2192 pre-registered accuracy bar shown as a semicircular gauge with a pass/fail threshold. Footer: 'screening aid, not a diagnosis' and 'bias toward referring' badges.",
+      "visual_source": "diagram",
+      "narration": "Furbo and PetCube say your dog barked. PetPace reads vitals, not faces. Tailtale reads the face \u2014 and always says 'worth a vet check,' tested against real data first."
     },
     {
-      "index": 5,
-      "title": "Beyond the Score",
-      "description": "Three white icon-cards in a row, each echoing a real screen: (1) orange icon, 'Dog Companion' - reactive 3D avatar mirrors the detected mood; (2) magenta icon, 'DogSocial' - share AI-verified mood posts with other owners; (3) purple icon, 'Vet Finder' - a distress alert auto-suggests nearby vets. Headline above the row, no quotes: Beyond the Score.",
-      "narration": "Beyond the score: a reactive 3D avatar, a DogSocial feed, and a vet finder for real distress.",
-      "visual_type": "persona_or_icon_card",
-      "is_primary_visual": false
+      "slide_number": 5,
+      "title": "What Ships Now vs. What's Next",
+      "slide_description": "Horizontal timeline with 3 phase cards: Phase 1 MVP (highlighted, solid) \u2014 capture, chart, clinic-finder; Phase 2 \u2014 community + avatar; Phase 3 \u2014 live video + bark reply. A dashed '12-24 month horizon' strip continues past phase 3. Footer: repo placeholder + course credit.",
+      "visual_source": "diagram",
+      "narration": "For this course, the MVP is capture, chart, and clinic-finder \u2014 that's it. The avatar, bark reply, and social feed are designed, not built. Getting the emotion read right comes first."
     },
     {
-      "index": 6,
-      "title": "Built Responsibly, For Everyone",
-      "description": "Closing card, off-white background. Headline 'Built Responsibly, For Everyone'. Three small audience tags in a row: Pet Owners, Creators, Veterinarians. Below, a thin purple-bordered disclaimer box: 'A behavioral approximation, not a vet diagnosis.' Bottom line: 'See the code on GitHub.'",
-      "narration": "Built for owners, creators, and vets — a behavioral approximation, never a diagnosis. See the repo.",
-      "visual_type": "text_only",
-      "is_primary_visual": false
+      "slide_number": 6,
+      "title": "Six Screens, One Flow",
+      "slide_description": "Six phone-frame mockups in a single horizontal row, evenly spaced edge to edge, recreated in HTML/CSS/SVG: Onboarding (DogMood AI splash), Capture (webcam viewfinder, 'Start Capture (20 frames)'), Emotion Read (Hungry! 92%, emotion-mix bars, consult-vet banner), Emotion Trend (7-day per-dog history line chart, Calm vs. Upset), Vet Referral (distress alert, map, clinic card with Call/Directions), and Community (post card with avatar, photo, caption, engagement stats, tagged 'Phase 2 concept'). Each phone sits under a caption naming the screen. Header states the recreation is code, not a screenshot or generated image.",
+      "visual_source": "mockup_screenshot",
+      "narration": "Here's the flow end to end: onboarding, a twenty-frame capture, the emotion read, a trend chart per dog, a vet referral when needed \u2014 and a community feed for sharing your dog's story."
     }
   ]
 }

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tailtale — Slide 4: Why We're Different, And Careful</title>
+<style>
+  :root{
+    --ink:#0d1310; --panel:#121a16; --paper:#f4f7f2; --muted:#b6c2ba;
+    --line:#223028; --warm:#ff7a45; --calm:#4fd1b0; --alert:#ff5c8a;
+    --font-display: ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --font-sans: ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code","DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#000;height:100%;}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .slide{
+    width:1920px;height:1080px;flex:none;position:relative;background:var(--ink);
+    color:var(--paper); font-family:var(--font-sans); padding:78px 110px 60px;
+    display:flex; flex-direction:column;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:19px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--calm); display:flex; align-items:center; gap:14px; margin-bottom:20px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--calm);display:block;}
+  h1{
+    font-family:var(--font-display); font-weight:600; font-size:56px; line-height:1.1;
+    margin:0 0 14px; letter-spacing:-0.01em; text-wrap:balance; max-width:24ch;
+  }
+  .dek{ font-size:20px; line-height:1.5; color:var(--muted); max-width:100ch; margin:0 0 40px; }
+
+  .grid{ display:grid; grid-template-columns:1.05fr 1fr; gap:70px; flex:1; min-height:0; }
+
+  .compare h3, .valid h3{
+    font-family:var(--font-mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 18px; font-weight:600;
+  }
+  .compare-row{ display:flex; gap:26px; padding:19px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+  .compare-row .who{ width:210px; flex:none; }
+  .compare-row .name{ font-family:var(--font-display); font-size:21px; font-weight:600; }
+  .compare-row .cat{ font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-top:4px; }
+  .compare-row .gap{ font-size:16.5px; line-height:1.5; color:var(--paper); }
+  .compare-row.hero{
+    background:rgba(255,122,69,0.08); border:1.5px solid var(--warm); border-radius:12px;
+    padding:22px 22px; margin-top:6px;
+  }
+  .compare-row.hero .name{ color:var(--warm); }
+  .compare-row.hero .gap{ color:var(--paper); }
+  .pill{
+    display:inline-block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em;
+    color:var(--warm); border:1px solid var(--warm); padding:2px 9px; border-radius:999px; margin-top:6px;
+  }
+
+  .valid-step{ display:flex; gap:18px; margin-bottom:26px; }
+  .valid-num{
+    width:38px; height:38px; border-radius:50%; background:var(--panel); border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:15px;
+    color:var(--calm); flex:none;
+  }
+  .valid-step h4{ font-size:18px; margin:2px 0 6px; font-weight:700; }
+  .valid-step p{ margin:0; font-size:16px; line-height:1.5; color:var(--paper); max-width:52ch; }
+  .valid-step .datasets{ display:flex; gap:10px; margin-top:10px; }
+  .dataset-chip{
+    font-family:var(--font-mono); font-size:13px; color:var(--paper); background:var(--panel);
+    border:1px solid var(--line); padding:6px 11px; border-radius:8px; display:flex; align-items:center; gap:6px;
+  }
+
+  .gate{
+    margin-top:8px; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:22px 24px; display:flex; gap:22px; align-items:center;
+  }
+  .gate-txt{ font-size:15.5px; line-height:1.5; color:var(--paper); }
+  .gate-txt b{ color:var(--paper); }
+
+  .footbar{
+    margin-top:30px; padding-top:22px; border-top:1px solid var(--line);
+    display:flex; gap:16px;
+  }
+  .badge{
+    font-family:var(--font-mono); font-size:15px; font-weight:600; color:var(--paper); background:var(--panel);
+    border:1.5px solid var(--alert); border-radius:999px; padding:11px 20px; display:flex; align-items:center; gap:10px;
+  }
+  .badge:nth-child(2){ border-color:var(--calm); }
+  .badge svg{ flex:none; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide">
+
+    <div class="eyebrow">04 — Positioning &amp; Validation</div>
+    <h1>Why Tailtale Is Different — And Why We're Careful</h1>
+    <p class="dek">The closest products monitor activity or vitals, or wait for the owner to type a symptom. None of them read a face. And we don't ship a category until we've measured it.</p>
+
+    <div class="grid">
+
+      <div class="compare">
+        <h3>Competitive Landscape</h3>
+
+        <div class="compare-row">
+          <div class="who"><div class="name">Furbo / PetCube</div><div class="cat">Hardware camera</div></div>
+          <div class="gap">Remote video, treat-tossing, bark alerts. Detects <em>that</em> barking happened — not what the dog feels.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="who"><div class="name">PetPace Collar</div><div class="cat">Wearable vitals monitor</div></div>
+          <div class="gap">Continuous temperature, pulse, respiration — clinically strong, but ~$780 over 3 years, and measures physiology, not expression.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="who"><div class="name">PerkyPet / PetNexa</div><div class="cat">Symptom-chat apps</div></div>
+          <div class="gap">Owner types a symptom first. No camera-based, passive read of expression.</div>
+        </div>
+
+        <div class="compare-row hero">
+          <div class="who"><div class="name">Tailtale</div><div class="cat">Browser app, camera-first</div><span class="pill">✓ Our approach</span></div>
+          <div class="gap">Live/recorded video → dog-specific facial emotion read → trend chart → clinic-finder when it matters.</div>
+        </div>
+      </div>
+
+      <div class="valid">
+        <h3>How We Validate The Read</h3>
+
+        <div class="valid-step">
+          <div class="valid-num">1</div>
+          <div>
+            <h4>DogFACS-grounded prompting</h4>
+            <p>The model scores specific action units before naming a category — not an open-ended "how does this dog feel."</p>
+          </div>
+        </div>
+
+        <div class="valid-step">
+          <div class="valid-num">2</div>
+          <div>
+            <h4>Few-shot calibration</h4>
+            <p>Labeled reference examples from two public datasets:</p>
+            <div class="datasets">
+              <span class="dataset-chip">📁 Balico — Dog Emotion (Kaggle)</span>
+              <span class="dataset-chip">📁 Tanwar — Pet Facial Expression (Kaggle)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="valid-step">
+          <div class="valid-num">3</div>
+          <div>
+            <h4>Held-out test set</h4>
+            <p>~40–60 images never shown during prompt design, used only to measure agreement with the human-assigned label.</p>
+          </div>
+        </div>
+
+        <div class="gate">
+          <svg width="150" height="90" viewBox="0 0 150 90">
+            <path d="M10 80 A65 65 0 0 1 55 20" fill="none" stroke="#223028" stroke-width="12" stroke-linecap="round"/>
+            <path d="M55 20 A65 65 0 0 1 140 80" fill="none" stroke="#4fd1b0" stroke-width="12" stroke-linecap="round"/>
+            <line x1="55" y1="20" x2="55" y2="34" stroke="#f4f7f2" stroke-width="3" stroke-linecap="round" transform="rotate(3 55 20)"/>
+            <text x="55" y="14" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f4f7f2">bar</text>
+            <text x="10" y="90" font-family="ui-monospace,monospace" font-size="10" fill="#b6c2ba">miss</text>
+            <text x="128" y="90" font-family="ui-monospace,monospace" font-size="10" fill="#4fd1b0">clear</text>
+          </svg>
+          <div class="gate-txt"><b>Pre-registered accuracy bar.</b> If a category can't clear it, we fall back to fewer, coarser categories — e.g. "relaxed" vs. "worth a look" — rather than ship an unvalidated 5-way split.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footbar">
+      <span class="badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff5c8a" stroke-width="2.4"><path d="M12 9v4M12 17h.01M10.3 3.9L2.7 17a2 2 0 0 0 1.7 3h15.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Screening aid, not a diagnosis</span>
+      <span class="badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4fd1b0" stroke-width="2.4"><path d="M12 2 3 7v6c0 5 3.8 8.7 9 9 5.2-.3 9-4 9-9V7l-9-5z"/></svg>Bias toward referring, not diagnosing</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

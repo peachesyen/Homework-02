@@ -1,15 +1,9 @@
-# secrets
+# Secrets — never commit
 .env
 
-# python
+# Generated artifacts
+output/
 __pycache__/
 *.pyc
 .venv/
 venv/
-
-# build artifacts (rendered frames, raw audio, generated video)
-build/
-*.mp4
-
-# OS cruft
-.DS_Store

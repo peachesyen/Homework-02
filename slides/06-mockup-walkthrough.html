@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tailtale — Slide 6: Six Screens, One Flow</title>
+<style>
+  :root{
+    --ink:#0d1310; --panel:#121a16; --paper:#f4f7f2; --muted:#c6d1c9;
+    --line:#26362d; --warm:#ff7a45; --calm:#4fd1b0; --alert:#ff5c8a;
+    --font-display: ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --font-sans: ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code","DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#000;height:100%;}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .slide{
+    width:1920px;height:1080px;flex:none;position:relative;background:var(--ink);
+    color:var(--paper); font-family:var(--font-sans); padding:52px 80px 32px;
+    display:flex; flex-direction:column;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:17px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--calm); display:flex; align-items:center; gap:14px; margin-bottom:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--calm);display:block;}
+  h1{
+    font-family:var(--font-display); font-weight:600; font-size:42px; line-height:1.08;
+    margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .dek{ font-size:16px; line-height:1.4; color:var(--muted); margin:0 0 18px; }
+
+  .walkthrough{ display:flex; flex-direction:column; flex:1; justify-content:center; }
+  .row{ display:flex; justify-content:space-between; align-items:flex-start; }
+
+  .unit{ display:flex; flex-direction:column; align-items:center; gap:10px; width:260px; }
+  .unit h3{ font-family:var(--font-display); font-size:18px; margin:0; font-weight:600; text-align:center; }
+  .unit p{ font-size:13px; color:var(--muted); line-height:1.3; text-align:center; margin:0; max-width:27ch; }
+  .unit .concept-tag{
+    font-family:var(--font-mono); font-size:9.5px; color:var(--warm); letter-spacing:.05em;
+    border:1px solid var(--warm); border-radius:999px; padding:2px 8px; margin-top:2px; white-space:nowrap;
+  }
+
+  .phone{
+    width:240px; height:507px; border-radius:37px; background:#05100c; padding:9px;
+    box-shadow:0 0 0 1.5px var(--line), 0 18px 34px -16px rgba(0,0,0,0.7);
+    flex:none; position:relative; overflow:hidden;
+  }
+  /* Each screen's internals are authored at a fixed 144x320 base and scaled
+     up uniformly to fill the bigger phone — keeps every screen's proportions
+     consistent without re-tuning dozens of individual font-sizes by hand. */
+  .screen{
+    width:144px; height:320px; transform:scale(1.5417); transform-origin:top left;
+    border-radius:18px; overflow:hidden; position:relative; font-family:var(--font-sans);
+  }
+  .notch{ position:absolute; top:0; left:50%; transform:translateX(-50%); width:48px; height:11px; background:#05100c; border-radius:0 0 7px 7px; z-index:5; }
+
+  /* ---- Screen 1: onboarding ---- */
+  .s-onboard{ background:linear-gradient(165deg,#ff6a63 0%,#ff8a52 100%); display:flex; flex-direction:column; align-items:center; padding:30px 14px 14px; }
+  .s-onboard .pill{ font-family:var(--font-mono); font-size:6.5px; letter-spacing:.08em; color:#fff; background:rgba(255,255,255,0.22); padding:3px 8px; border-radius:999px; margin-bottom:8px; }
+  .s-onboard .title{ font-family:var(--font-display); font-weight:700; font-size:17px; color:#fff; margin-bottom:12px; }
+  .pup{ width:76px; height:76px; border-radius:50%; background:rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
+  .s-onboard .desc{ font-size:8px; color:rgba(255,255,255,0.92); text-align:center; line-height:1.4; margin-bottom:auto; }
+  .s-onboard .cta{ width:100%; background:#fff; color:#ff6a52; font-weight:700; font-size:9.5px; text-align:center; padding:9px; border-radius:999px; margin-top:10px; }
+
+  /* ---- Screen 2: capture ---- */
+  .s-capture{ background:#0d1310; padding:12px 10px; display:flex; flex-direction:column; gap:7px; }
+  .cap-top{ font-size:7.5px; color:var(--muted); }
+  .cap-top b{ color:var(--paper); font-size:8.5px; display:block; }
+  .toggle{ display:flex; gap:4px; margin-top:5px; }
+  .toggle span{ font-family:var(--font-mono); font-size:6px; padding:2px 6px; border-radius:999px; background:var(--panel); color:var(--muted); }
+  .toggle span.on{ background:var(--calm); color:#05100c; font-weight:700; }
+  .viewport{ flex:1; background:#1a2620; border-radius:8px; position:relative; overflow:hidden; }
+  .dogshape{ position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:70%; height:60%; }
+  .align-txt{ position:absolute; top:6px; left:50%; transform:translateX(-50%); font-size:6px; color:#fff; opacity:.85; }
+  .corner{ position:absolute; width:11px; height:11px; border:1.4px solid var(--calm); }
+  .c-tl{ top:6px; left:6px; border-right:none; border-bottom:none; }
+  .c-tr{ top:6px; right:6px; border-left:none; border-bottom:none; }
+  .c-bl{ bottom:6px; left:6px; border-right:none; border-top:none; }
+  .c-br{ bottom:6px; right:6px; border-left:none; border-top:none; }
+  .frames-row{ display:flex; justify-content:space-between; font-size:7.5px; color:var(--muted); }
+  .frames-row b{ color:var(--paper); }
+  .cap-cta{ background:var(--warm); color:#fff; font-weight:700; font-size:8.5px; text-align:center; padding:8px; border-radius:8px; }
+  .tabbar{ display:flex; justify-content:space-around; padding-top:5px; border-top:1px solid var(--line); }
+  .tabbar span{ width:10px; height:10px; border-radius:3px; background:var(--line); }
+  .tabbar span.active{ background:var(--warm); }
+
+  /* ---- Screen 3: results ---- */
+  .s-results{ background:#eef1ea; color:#12180f; padding:11px; display:flex; flex-direction:column; gap:7px; font-size:8px; }
+  .res-top{ display:flex; justify-content:space-between; align-items:center; }
+  .badge-ok{ font-family:var(--font-mono); font-size:6px; padding:3px 6px; border-radius:999px; background:#173425; color:#8ff0b0; }
+  .badge-rep{ font-family:var(--font-mono); font-size:6px; color:#7a5a1a; background:#fff; padding:3px 6px; border-radius:999px; border:1px solid #e4d9ba; }
+  .res-card{ background:#fff; border-radius:9px; padding:8px; display:flex; align-items:center; gap:7px; }
+  .res-card .lbl{ font-size:5.5px; letter-spacing:.05em; color:#6f766a; text-transform:uppercase; }
+  .res-card .emo{ font-family:var(--font-display); font-weight:700; font-size:14px; color:var(--warm); }
+  .res-card .sub{ font-size:6px; color:#57604f; margin-top:2px; }
+  .donut{ margin-left:auto; }
+  .mixrow{ display:flex; align-items:center; gap:6px; }
+  .mixrow .name{ width:32px; font-size:6px; color:#3c4238; }
+  .mixbar{ flex:1; height:5px; border-radius:3px; background:#e3e6de; overflow:hidden; }
+  .mixbar i{ display:block; height:100%; border-radius:3px; }
+  .mixrow .pct{ width:20px; text-align:right; font-family:var(--font-mono); font-size:6px; color:#3c4238; }
+  .consult{ background:#ffe3ec; color:#c22a63; font-size:6.5px; font-weight:700; border-radius:8px; padding:6px 8px; display:flex; justify-content:space-between; margin-top:auto; }
+
+  /* ---- Screen 4: trend chart ---- */
+  .s-trend{ background:#eef1ea; color:#12180f; padding:11px; display:flex; flex-direction:column; gap:8px; }
+  .trend-head b{ display:block; font-size:11px; }
+  .trend-head span{ font-size:6.5px; color:#57604f; }
+  .trend-chart{ flex:1; background:#fff; border-radius:9px; padding:8px 6px 4px; }
+  .trend-legend{ display:flex; gap:10px; justify-content:center; }
+  .trend-legend span{ display:flex; align-items:center; gap:4px; font-size:6.5px; color:#3c4238; }
+  .trend-legend i{ width:7px; height:7px; border-radius:50%; display:block; }
+  .trend-callout{ background:#e3f5ec; color:#1c7a4f; font-size:6.8px; font-weight:700; border-radius:8px; padding:6px 8px; text-align:center; }
+
+  /* ---- Screen 5: vet finder ---- */
+  .s-vet{ background:#0d1310; padding:11px; display:flex; flex-direction:column; gap:8px; }
+  .distress{ background:#3a1420; border:1px solid var(--alert); border-radius:8px; padding:7px; font-size:6.8px; color:#ffc9d9; line-height:1.35; }
+  .distress b{ color:var(--alert); display:block; font-size:7.5px; margin-bottom:2px; }
+  .mapbox{ height:78px; background:#152119; border-radius:8px; position:relative; overflow:hidden; }
+  .mapbox svg{ width:100%; height:100%; }
+  .clinic{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:7px; }
+  .clinic .name{ font-size:7.5px; font-weight:700; color:var(--paper); }
+  .clinic .meta{ font-size:6.5px; color:var(--muted); margin:2px 0 5px; }
+  .clinic .btns{ display:flex; gap:4px; }
+  .clinic .btns span{ flex:1; text-align:center; font-size:6px; font-weight:700; padding:4px; border-radius:5px; }
+  .btn-call{ background:var(--calm); color:#05100c; }
+  .btn-dir{ background:transparent; border:1px solid var(--line); color:var(--paper); }
+
+  /* ---- Screen 6: community feed ---- */
+  .s-feed{ background:#0d1310; padding:11px; display:flex; flex-direction:column; gap:8px; }
+  .feed-head{ font-family:var(--font-display); font-weight:700; font-size:13px; }
+  .feed-post{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px; display:flex; flex-direction:column; gap:7px; }
+  .feed-user{ display:flex; align-items:center; gap:7px; }
+  .feed-avatar{ width:24px; height:24px; border-radius:50%; background:#3a4a5a; display:flex; align-items:center; justify-content:center; flex:none; }
+  .feed-name{ font-size:8px; font-weight:700; color:var(--paper); }
+  .feed-time{ font-size:6px; color:var(--muted); }
+  .feed-photo{ height:68px; border-radius:8px; background:linear-gradient(135deg,#2a3a44,#1a2620); display:flex; align-items:center; justify-content:center; }
+  .feed-caption{ font-size:7px; color:var(--paper); line-height:1.4; }
+  .feed-stats{ font-size:6.5px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide">
+
+    <div class="eyebrow">06 — Product Walkthrough</div>
+    <h1>Six Screens, One Flow</h1>
+    <p class="dek">Every screen below is real interface code — no screenshots, no generated images.</p>
+
+    <div class="walkthrough">
+
+      <div class="row">
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-onboard">
+              <div class="pill">AI EXPRESSION DETECTOR</div>
+              <div class="title">DogMood AI</div>
+              <div class="pup">
+                <svg width="52" height="52" viewBox="0 0 64 64">
+                  <g stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 24 Q8 8 22 14 Q26 22 22 30 Z" fill="rgba(255,255,255,0.15)"/>
+                    <path d="M48 24 Q56 8 42 14 Q38 22 42 30 Z" fill="rgba(255,255,255,0.15)"/>
+                    <ellipse cx="32" cy="34" rx="18" ry="16" fill="rgba(255,255,255,0.1)"/>
+                  </g>
+                  <circle cx="26" cy="30" r="2.4" fill="#fff"/>
+                  <circle cx="38" cy="30" r="2.4" fill="#fff"/>
+                  <path d="M28 40 Q32 44 36 40" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="desc">Understand your dog's emotions with real-time AI analysis.</div>
+              <div class="cta">Get Started →</div>
+            </div></div>
+            <h3>Onboarding</h3>
+            <p>Sets expectations up front.</p>
+          </div>
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-capture">
+              <div class="notch"></div>
+              <div class="cap-top"><b>Hi, Dog Parent! 👋</b>Ready to scan Buddy?
+                <div class="toggle"><span class="on">Webcam</span><span>Sample</span></div>
+              </div>
+              <div class="viewport">
+                <svg class="dogshape" viewBox="0 0 100 90" preserveAspectRatio="xMidYMax meet">
+                  <ellipse cx="50" cy="80" rx="34" ry="10" fill="#0d1310" opacity="0.4"/>
+                  <path d="M30 78 V50 Q30 30 50 30 Q70 30 70 50 V78 Z" fill="#3a2a1c"/>
+                  <circle cx="50" cy="26" r="16" fill="#4a3624"/>
+                  <path d="M36 16 Q30 2 42 8 Z" fill="#3a2a1c"/>
+                  <path d="M64 16 Q70 2 58 8 Z" fill="#3a2a1c"/>
+                </svg>
+                <div class="align-txt">Align dog's face</div>
+                <div class="corner c-tl"></div><div class="corner c-tr"></div>
+                <div class="corner c-bl"></div><div class="corner c-br"></div>
+              </div>
+              <div class="frames-row"><span>Captured Frames</span><b>0 / 20</b></div>
+              <div class="cap-cta">Start Capture (20 frames)</div>
+              <div class="tabbar"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+            </div></div>
+            <h3>Capture</h3>
+            <p>20 sampled frames, one tap.</p>
+          </div>
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-results">
+              <div class="notch" style="background:#eef1ea;"></div>
+              <div class="res-top" style="margin-top:6px;"><span class="badge-ok">✓ COMPLETE</span><span class="badge-rep">🐾 Report</span></div>
+              <div class="res-card">
+                <div>
+                  <div class="lbl">Primary Emotion</div>
+                  <div class="emo">Hungry!</div>
+                  <div class="sub">Wants a treat.</div>
+                </div>
+                <svg class="donut" width="38" height="38" viewBox="0 0 46 46">
+                  <circle cx="23" cy="23" r="18" fill="none" stroke="#e3e6de" stroke-width="6"/>
+                  <circle cx="23" cy="23" r="18" fill="none" stroke="#ff7a45" stroke-width="6" stroke-linecap="round"
+                    stroke-dasharray="113.1" stroke-dashoffset="9" transform="rotate(-90 23 23)"/>
+                  <text x="23" y="27" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#12180f">92%</text>
+                </svg>
+              </div>
+              <div class="mixrow"><span class="name">Hungry</span><div class="mixbar"><i style="width:48%;background:#ff7a45;"></i></div><span class="pct">48%</span></div>
+              <div class="mixrow"><span class="name">Bored</span><div class="mixbar"><i style="width:25%;background:#ff5c5c;"></i></div><span class="pct">25%</span></div>
+              <div class="mixrow"><span class="name">Upset</span><div class="mixbar"><i style="width:15%;background:#ff5c8a;"></i></div><span class="pct">15%</span></div>
+              <div class="consult"><span>🚩 Consult?</span><span>Vet →</span></div>
+            </div></div>
+            <h3>Emotion Read</h3>
+            <p>Category, confidence, why.</p>
+          </div>
+
+
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-trend">
+              <div class="notch" style="background:#eef1ea;"></div>
+              <div class="trend-head" style="margin-top:6px;"><b>Buddy — 7-Day Trend</b><span>Calm is climbing, Upset is down</span></div>
+              <div class="trend-chart">
+                <svg width="100%" height="66" viewBox="0 0 160 66" preserveAspectRatio="none">
+                  <polyline points="4,44 28,38 52,30 76,26 100,18 124,14 156,8" fill="none" stroke="#4fd1b0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="4,20 28,26 52,22 76,34 100,40 124,48 156,54" fill="none" stroke="#ff5c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <g fill="#9aa79c" font-family="ui-monospace,monospace" font-size="6">
+                    <text x="0" y="65">M</text><text x="26" y="65">T</text><text x="50" y="65">W</text>
+                    <text x="76" y="65">T</text><text x="100" y="65">F</text><text x="124" y="65">S</text><text x="150" y="65">S</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="trend-legend"><span><i style="background:#4fd1b0;"></i>Calm</span><span><i style="background:#ff5c8a;"></i>Upset</span></div>
+              <div class="trend-callout">📈 Calmer than last week</div>
+            </div></div>
+            <h3>Emotion Trend</h3>
+            <p>Trends per dog, over time.</p>
+          </div>
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-vet">
+              <div class="notch"></div>
+              <div class="distress" style="margin-top:6px;"><b>🚩 Pet Distress Alert</b>Analysis indicates distress — find a vet nearby.</div>
+              <div class="mapbox">
+                <svg viewBox="0 0 240 90">
+                  <rect width="240" height="90" fill="#152119"/>
+                  <g stroke="#233a2e" stroke-width="1">
+                    <path d="M0 30 H240 M0 60 H240"/>
+                    <path d="M60 0 V90 M120 0 V90 M180 0 V90"/>
+                  </g>
+                  <path d="M120 32 C130 32 136 40 136 49 C136 60 120 74 120 74 C120 74 104 60 104 49 C104 40 110 32 120 32 Z" fill="#ff5c8a"/>
+                  <circle cx="70" cy="60" r="4" fill="#4fd1b0" opacity="0.7"/>
+                  <circle cx="170" cy="28" r="4" fill="#4fd1b0" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="clinic">
+                <div class="name">Metro Animal Emergency</div>
+                <div class="meta">0.8 mi · ⭐ 4.9 · 24/7</div>
+                <div class="btns"><span class="btn-call">Call</span><span class="btn-dir">Directions</span></div>
+              </div>
+            </div></div>
+            <h3>Vet Referral</h3>
+            <p>Only when concern is real.</p>
+          </div>
+
+          <div class="unit">
+            <div class="phone"><div class="screen s-feed">
+              <div class="notch"></div>
+              <div class="feed-head" style="margin-top:6px;">Community</div>
+              <div class="feed-post">
+                <div class="feed-user">
+                  <div class="feed-avatar">
+                    <svg width="15" height="15" viewBox="0 0 64 64">
+                      <g stroke="#cfe0ea" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="32" cy="34" rx="18" ry="16"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div><div class="feed-name">Max the Husky</div><div class="feed-time">2h ago</div></div>
+                </div>
+                <div class="feed-photo">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4fd1b0" stroke-width="1.6"><path d="M12 2 3 7v6c0 5 3.8 8.7 9 9 5.2-.3 9-4 9-9V7l-9-5z"/></svg>
+                </div>
+                <div class="feed-caption">Morning zoomies are real! 🐕💨</div>
+                <div class="feed-stats">🐾 24 Woofs · 💬 2 comments</div>
+              </div>
+            </div></div>
+            <h3>Community</h3>
+            <p>Share a story.</p>
+            <span class="concept-tag">PHASE 2 CONCEPT</span>
+          </div>
+
+        </div>
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

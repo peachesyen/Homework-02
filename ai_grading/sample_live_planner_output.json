@@ -1,0 +1,48 @@
+{
+  "project_name": "Tailtale AI Dog Wellness",
+  "video_title": "Tailtale: Bridging the Canine Communication Gap",
+  "slides": [
+    {
+      "slide_number": 1,
+      "title": "Understanding the Silent Family Member",
+      "slide_description": "Title: The Language of Dogs. Visual: A split-screen layout. On the left, a bold stat: '50% of Thai owners see dogs as children.' On the right, a dog's face with digital 'tracking points' on its eyebrows and ears.",
+      "visual_source": "mockup_screenshot",
+      "narration": "In Thailand's two-billion-dollar pet market, owners treat dogs like family, yet struggle to detect silent distress. Tailtale bridges this gap by using AI to interpret canine facial expressions, turning silent signals into actionable wellness insights."
+    },
+    {
+      "slide_number": 2,
+      "title": "Capture, Chart, and Connect",
+      "slide_description": "Layout: Three phone mockups showing the UI flow. 1: Browser camera interface. 2: A color-coded radar chart showing 'Relaxed, Alert, Anxious.' 3: An interactive map showing 'Nearby Veterinary Clinics.'",
+      "visual_source": "mockup_screenshot",
+      "narration": "Tailtale is a browser-based app that analyzes video clips to monitor your dog’s emotional health. Our MVP focuses on a high-impact loop: record your dog, view an emotion trend chart, and find nearby vets instantly if discomfort is detected."
+    },
+    {
+      "slide_number": 3,
+      "title": "Research-Grounded AI Analysis",
+      "slide_description": "Diagram showing the 'Agentic Flow.' Video Input -> Vision-Language Model (Reasoning over DogFACS) -> Data Store. A conditional arrow labeled 'Concern Detected' leads to a 'Google Places API' block.",
+      "visual_source": "diagram",
+      "narration": "Our system uses vision-language models grounded in DogFACS research. It analyzes facial cues—like ear position and brow tension—to categorize moods. This agentic flow triggers the Places API for veterinary referrals only when specific concern thresholds are met."
+    },
+    {
+      "slide_number": 4,
+      "title": "A Unique Lens on Wellness",
+      "slide_description": "A comparison table. Columns: Tailtale, Smart Collars, Symptom Apps. Rows: Facial Analysis (Check for Tailtale), No Hardware Required (Check for Tailtale), Direct Vet Mapping (Check for Tailtale).",
+      "visual_source": "stat_graphic",
+      "narration": "Unlike existing trackers that focus on hardware vitals or generic symptom chats, Tailtale is the first camera-first platform for dog emotions. We offer an affordable, software-only solution that bridges the gap between raw video and clinical diagnosis."
+    },
+    {
+      "slide_number": 5,
+      "title": "Ethics and Scientific Limits",
+      "slide_description": "Text-only slide with high-contrast warning style. Icons of different dog breeds (Floppy vs Pointy ears) with text: 'Screening Aid, Not Diagnosis.' Bullet points on few-shot calibration and accuracy thresholds.",
+      "visual_source": "text_only",
+      "narration": "We are honest about AI limits. Breed morphology, like ear shape, affects accuracy, so Tailtale is a screening aid, not a diagnostic tool. We validate our prompts against labeled datasets to ensure every reading is grounded in science."
+    },
+    {
+      "slide_number": 6,
+      "title": "Roadmap to a Happier Pack",
+      "slide_description": "A roadmap timeline. Current: Core Wellness MVP. Phase 2: Community Feed & Avatars. Phase 3: Bark Synthesis. Bottom of slide features the GitHub repository handle.",
+      "visual_source": "diagram",
+      "narration": "The MVP delivers the core emotion-to-clinic loop. Future phases will introduce a playful community feed, AI-generated dog avatars, and 'bark replies.' Our priority remains building a reliable, research-backed tool that puts dog welfare first."
+    }
+  ]
+}
